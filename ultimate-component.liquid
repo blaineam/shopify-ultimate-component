@@ -1,0 +1,4050 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<div class="ultimate-component-container {{ section.settings.class_name | defaut: ""}}" style="position:relative;">
+  <div class="ultimate-component-block"> 
+    {% if section.blocks.size > 0 %}
+    <div class="ultimate-compnent-item-{{ section.id }} ultimate-component-wrapper"> 
+      {% for block in section.blocks %}
+      <div class="ultimate-component-block" {{ block.shopify_attributes }}>
+        {% if block.settings.top_edge_image != blank %}
+        <div style="top:0;z-index:5;height: {{ block.settings.top_edge_height | default: '10vh' }} !important;" class="ultimate-component-edges-container">
+          <img class="ultimate-component-cover lazyload" {% if section.settings.lazyload %}data-{% endif %}src=" {{ block.settings.top_edge_image | img_url: 'master' }}" alt="Ultimate Component Top Edge" />
+        </div> 
+        {% endif %}
+        <a href="{{ block.settings.link }}" class="ultimate-component-hyperlink same-height">
+          <div class="ultimate-component-link"> 
+            {% if block.settings.video_url != blank %}
+            {% if block.settings.video_fallback_image != blank %} 
+            <img style="z-index:0;" class="ultimate-component-cover lazyload"
+            {% if section.settings.lazyload %}data-{% endif %}src=" {{ block.settings.video_fallback_image | img_url: 'master' }}" 
+            alt="Ultimate Component Fallback Image" /> 
+            {% endif %} 
+            <video 
+            autoplay 
+            {% if block.settings.video_loop %}loop{% endif %} 
+            {% if block.settings.video_fallback_image != blank %}poster="{{ block.settings.video_fallback_image | img_url: 'master' }}"{% endif %} 
+            muted 
+            playsinline 
+            width="100%" 
+            style="z-index:0;"
+            class="ultimate-component-cover lazyload">
+              <source {% if section.settings.lazyload %}data-{% endif %}src="{{ block.settings.video_url }}" type="video/mp4" />
+            </video> 
+            {% endif %}
+            {% if block.settings.image != blank %} 
+            <img style="z-index:1;" class="ultimate-component-cover ultimate-component-background-image {% if block.settings.mobile_image == blank %}  ultimate-component-background-image-mobile {% endif %}   lazyload"
+            data-src=" {{ block.settings.image | img_url: 'master' }}" 
+            alt="Ultimate Component Background Image" /> 
+            {% endif %} 
+            {% if block.settings.mobile_image != blank %} 
+            <img style="z-index:1;" class="ultimate-component-cover ultimate-component-background-image-mobile  lazyload"
+            {% if section.settings.lazyload %}data-{% endif %}src="{{ block.settings.mobile_image | img_url: 'master'}}" 
+            alt="Ultimate Component Background Mobile Image" /> 
+            {% endif %} 
+            {% if block.settings.background_overlay != blank %}
+            <div style="z-index:2;width:100%;height:100%;top:0;left:0;position:absolute;background:{{ block.settings.background_overlay }};"></div> {% endif %}
+            {% if block.settings.image_overlay != blank %} 
+            <img style="z-index:3;" class="ultimate-component-cover ultimate-component-image-overlay
+              {% if block.settings.image_overlay_use_animation and block.settings.image_overlay_animation != blank  %}
+                animate__animated
+                animate__{{ block.settings.image_overlay_animation }}
+                {% if block.settings.image_overlay_animation_delay != blank %}
+                  animate__delay-{{block.settings.image_overlay_animation_delay}}
+                {% endif %}
+                {% if block.settings.image_overlay_animation_speed != blank %}
+                  animate__{{block.settings.image_overlay_animation_speed}}
+                {% endif %}
+                {% if block.settings.image_overlay_animation_repeat != blank %}
+                  animate__{{block.settings.image_overlay_animation_repeat}}
+                {% endif %}
+              {% endif %}
+
+              {% if block.settings.paralax_driver != blank and block.settings.image_overlay_paralax_preset != blank %}
+                lax  
+                ultimate-component-animate-{{block.settings.paralax_driver}}
+                lax_preset_{{block.settings.image_overlay_paralax_preset}}{% if block.settings.image_overlay_paralax_distance != blank and block.settings.image_overlay_paralax_strength  %}:{{block.settings.image_overlay_paralax_distance}}:{{block.settings.image_overlay_paralax_strength}}{% endif %}
+              {% endif %}
+               lazyload" {% if section.settings.lazyload %}data-{% endif %}src=" {{ block.settings.image_overlay | img_url: 'master' }}" alt="Ultimate Component Image Overlay" /> 
+            {% endif %}
+            {% if block.settings.subtitle != blank 
+            or block.settings.subtitle_html != blank 
+            or block.settings.maintitle != blank 
+            or block.settings.maintitle_html != blank 
+            or block.settings.desc != blank 
+            or block.settings.desc_html != blank 
+            or block.settings.button_label != blank %}
+            <div class="ultimate-component-page-width" style="
+                z-index: 4;
+                padding-top: {{ block.settings.padding_top | default: '0px' }};
+                padding-left: {{ block.settings.padding_left | default: '0px' }};
+                padding-bottom: {{ block.settings.padding_bottom | default: '0px' }};
+                padding-right: {{ block.settings.padding_right | default: '0px' }};
+              ">
+              <div class="ultimate-component-content ultimate-component-content-{{block.settings.text_position}} ultimate-component-mobile-content-{{block.settings.mobile_text_position}} ultimate-component-content-{{block.settings.layout}} ultimate-component-text-alignment-{{ block.settings.textalignment }}  ultimate-component-mobile-text-alignment-{{ block.settings.mobile_textalignment }}"
+                style="{% if block.settings.max_width != empty %}
+                  width: {{ block.settings.max_width }};
+                  {% endif %}
+                "> 
+                {% if block.settings.subtitle != blank %}
+                <div class="
+                  ultimate-container-sub-title
+                  
+                  {% if block.settings.subtitle_css_classes != blank %}
+                    {{ block.settings.subtitle_css_classes }}
+                  {% endif %}
+                  {% if block.settings.subtitle_use_animation and block.settings.subtitle_animation != blank  %}
+                    animate__animated
+                    animate__{{ block.settings.subtitle_animation }}
+                    {% if block.settings.subtitle_animation_delay != blank %}
+                      animate__delay-{{block.settings.subtitle_animation_delay}}
+                    {% endif %}
+                    {% if block.settings.subtitle_animation_speed != blank %}
+                      animate__{{block.settings.subtitle_animation_speed}}
+                    {% endif %}
+                    {% if block.settings.subtitle_animation_repeat != blank %}
+                      animate__{{block.settings.subtitle_animation_repeat}}
+                    {% endif %}
+                  {% endif %}
+
+                  {% if block.settings.paralax_driver != blank and block.settings.subtitle_paralax_preset != blank %}
+                    lax  
+                    ultimate-component-animate-{{block.settings.paralax_driver}}
+                    lax_preset_{{block.settings.subtitle_paralax_preset}}{% if block.settings.subtitle_paralax_distance != blank and block.settings.subtitle_paralax_strength  %}:{{block.settings.subtitle_paralax_distance}}:{{block.settings.subtitle_paralax_strength}}{% endif %}
+                  {% endif %}
+                " style="color:{{ block.settings.subtitlecolor }}"> {{ block.settings.subtitle }}</div> 
+                {% else %}
+                <div class="
+                  ultimate-container-sub-title
+                  
+                  {% if block.settings.subtitle_css_classes != blank %}
+                    {{ block.settings.subtitle_css_classes }}
+                  {% endif %}
+                  {% if block.settings.subtitle_use_animation and block.settings.subtitle_animation != blank  %}
+                    animate__animated
+                    animate__{{ block.settings.subtitle_animation }}
+                    {% if block.settings.subtitle_animation_delay != blank %}
+                      animate__delay-{{block.settings.subtitle_animation_delay}}
+                    {% endif %}
+                    {% if block.settings.subtitle_animation_speed != blank %}
+                      animate__{{block.settings.subtitle_animation_speed}}
+                    {% endif %}
+                    {% if block.settings.subtitle_animation_repeat != blank %}
+                      animate__{{block.settings.subtitle_animation_repeat}}
+                    {% endif %}
+                  {% endif %}
+
+                  {% if block.settings.paralax_driver != blank and block.settings.subtitle_paralax_preset != blank %}
+                    lax  
+                    ultimate-component-animate-{{block.settings.paralax_driver}}
+                    lax_preset_{{block.settings.subtitle_paralax_preset}}{% if block.settings.subtitle_paralax_distance != blank and block.settings.subtitle_paralax_strength  %}:{{block.settings.subtitle_paralax_distance}}:{{block.settings.subtitle_paralax_strength}}{% endif %}
+                  {% endif %}
+                " style="color:{{ block.settings.subtitlecolor }}"> {{ block.settings.subtitle_html }}</div>
+                {% endif %}
+                {% if block.settings.maintitle != blank %}
+                <div class="
+                  ultimate-component-main-title
+                  
+                  {% if block.settings.maintitle_css_classes != blank %}
+                    {{ block.settings.maintitle_css_classes }}
+                  {% endif %}
+                  {% if block.settings.heading_use_animation and block.settings.heading_animation != blank  %}
+                    animate__animated
+                    animate__{{ block.settings.heading_animation }}
+                    {% if block.settings.heading_animation_delay != blank %}
+                      animate__delay-{{block.settings.heading_animation_delay}}
+                    {% endif %}
+                    {% if block.settings.heading_animation_speed != blank %}
+                      animate__{{block.settings.heading_animation_speed}}
+                    {% endif %}
+                    {% if block.settings.heading_animation_repeat != blank %}
+                      animate__{{block.settings.heading_animation_repeat}}
+                    {% endif %}
+                  {% endif %}
+
+                  {% if block.settings.paralax_driver != blank and block.settings.heading_paralax_preset != blank %}
+                    lax  
+                    ultimate-component-animate-{{block.settings.paralax_driver}}
+                    lax_preset_{{block.settings.heading_paralax_preset}}{% if block.settings.heading_paralax_distance != blank and block.settings.heading_paralax_strength  %}:{{block.settings.heading_paralax_distance}}:{{block.settings.heading_paralax_strength}}{% endif %}
+                  {% endif %}
+                " style="color:{{ block.settings.maintitlecolor }}">{{ block.settings.maintitle }}</div>
+                {% else %}
+                <div class="
+                  ultimate-component-main-title
+                  
+                  {% if block.settings.maintitle_css_classes != blank %}
+                    {{ block.settings.maintitle_css_classes }}
+                  {% endif %}
+                  {% if block.settings.heading_use_animation and block.settings.heading_animation != blank  %}
+                    animate__animated
+                    animate__{{ block.settings.heading_animation }}
+                    {% if block.settings.heading_animation_delay != blank %}
+                      animate__delay-{{block.settings.heading_animation_delay}}
+                    {% endif %}
+                    {% if block.settings.heading_animation_speed != blank %}
+                      animate__{{block.settings.heading_animation_speed}}
+                    {% endif %}
+                    {% if block.settings.heading_animation_repeat != blank %}
+                      animate__{{block.settings.heading_animation_repeat}}
+                    {% endif %}
+                  {% endif %}
+
+                  {% if block.settings.paralax_driver != blank and block.settings.heading_paralax_preset != blank %}
+                    lax  
+                    ultimate-component-animate-{{block.settings.paralax_driver}}
+                    lax_preset_{{block.settings.heading_paralax_preset}}{% if block.settings.heading_paralax_distance != blank and block.settings.heading_paralax_strength  %}:{{block.settings.heading_paralax_distance}}:{{block.settings.heading_paralax_strength}}{% endif %}
+                  {% endif %}
+                " style="color:{{ block.settings.maintitlecolor }}">{{ block.settings.maintitle_html }}</div>
+                {% endif %}
+                {% if block.settings.desc != blank %}
+                <div class="
+                  ultimate-component-desc
+                
+                  {% if block.settings.desc_css_classes != blank %}
+                    {{ block.settings.desc_css_classes }}
+                  {% endif %}
+                  {% if block.settings.description_use_animation and block.settings.description_animation != blank  %}
+                    animate__animated
+                    animate__{{ block.settings.description_animation }}
+                    {% if block.settings.description_animation_delay != blank %}
+                      animate__delay-{{block.settings.description_animation_delay}}
+                    {% endif %}
+                    {% if block.settings.description_animation_speed != blank %}
+                      animate__{{block.settings.description_animation_speed}}
+                    {% endif %}
+                    {% if block.settings.description_animation_repeat != blank %}
+                      animate__{{block.settings.description_animation_repeat}}
+                    {% endif %}
+                  {% endif %}
+
+                  {% if block.settings.paralax_driver != blank and block.settings.description_paralax_preset != blank %}
+                    lax  
+                    ultimate-component-animate-{{block.settings.paralax_driver}}
+                    lax_preset_{{block.settings.description_paralax_preset}}{% if block.settings.description_paralax_distance != blank and block.settings.description_paralax_strength  %}:{{block.settings.description_paralax_distance}}:{{block.settings.description_paralax_strength}}{% endif %}
+                  {% endif %}
+                " style="color:{{ block.settings.desccolor }}">{{ block.settings.desc }}</div>
+                {% else %}
+                <div class="
+                  ultimate-component-desc
+                
+                  {% if block.settings.desc_css_classes != blank %}
+                    {{ block.settings.desc_css_classes }}
+                  {% endif %}
+                  {% if block.settings.description_use_animation and block.settings.description_animation != blank  %}
+                    animate__animated
+                    animate__{{ block.settings.description_animation }}
+                    {% if block.settings.description_animation_delay != blank %}
+                      animate__delay-{{block.settings.description_animation_delay}}
+                    {% endif %}
+                    {% if block.settings.description_animation_speed != blank %}
+                      animate__{{block.settings.description_animation_speed}}
+                    {% endif %}
+                    {% if block.settings.description_animation_repeat != blank %}
+                      animate__{{block.settings.description_animation_repeat}}
+                    {% endif %}
+                  {% endif %}
+
+                  {% if block.settings.paralax_driver != blank and block.settings.description_paralax_preset != blank %}
+                    lax  
+                    ultimate-component-animate-{{block.settings.paralax_driver}}
+                    lax_preset_{{block.settings.description_paralax_preset}}{% if block.settings.description_paralax_distance != blank and block.settings.description_paralax_strength  %}:{{block.settings.description_paralax_distance}}:{{block.settings.description_paralax_strength}}{% endif %}
+                  {% endif %}
+                " style="color:{{ block.settings.desccolor }}">{{ block.settings.desc_html }}</div>
+                {% endif %}
+                {% if block.settings.button_label != blank %}
+                <div class="
+                  slider-btn
+                  btn
+                    
+                  {% if block.settings.button_use_animation and block.settings.button_animation != blank  %}
+                    animate__animated
+                    animate__{{ block.settings.button_animation }}
+                    {% if block.settings.button_animation_delay != blank %}
+                      animate__delay-{{block.settings.button_animation_delay}}
+                    {% endif %}
+                    {% if block.settings.button_animation_speed != blank %}
+                      animate__{{block.settings.button_animation_speed}}
+                    {% endif %}
+                    {% if block.settings.button_animation_repeat != blank %}
+                      animate__{{block.settings.button_animation_repeat}}
+                    {% endif %}
+                  {% endif %}
+
+                  {% if block.settings.paralax_driver != blank and block.settings.button_paralax_preset != blank %}
+                    lax  
+                    ultimate-component-animate-{{block.settings.paralax_driver}}
+                    lax_preset_{{block.settings.button_paralax_preset}}{% if block.settings.button_paralax_distance != blank and block.settings.button_paralax_strength  %}:{{block.settings.button_paralax_distance}}:{{block.settings.button_paralax_strength}}{% endif %}
+                  {% endif %}
+                ">{{ block.settings.button_label | escape }}</div>
+                {% endif %}
+              </div>
+            </div> 
+            {% endif %}
+          </div>
+        </a> 
+        {% if block.settings.bottom_edge_image != blank %}
+        <div style="bottom:0;z-index:5;height: {{ block.settings.bottom_edge_height | default: '10vh' }} !important;" class="ultimate-component-edges-container">
+          <img class="ultimate-component-cover lazyload" {% if section.settings.lazyload %}data-{% endif %}src=" {{ block.settings.bottom_edge_image | img_url: 'master' }}" alt="Ultimate Component Bottom Edge" />
+        </div> 
+        {%endif %} 
+      </div> 
+      {% endfor %} 
+    </div> 
+    {% endif %} 
+  </div>
+</div>
+<style type="text/css">
+  :root {
+    --height{{ section.id}} : {{ section.settings.height}} ;
+    --mobileheight{{ section.id}} : {{ section.settings.mobile_height}};
+  }
+  
+  #shopify-section-{{ section.id}} .same-height {
+    height: var(--height{{ section.id}} ) !important;
+    display:block;
+  }
+  
+  @media only screen and (max-width: 767px) {
+    #shopify-section-{{ section.id}} .same-height {
+      height: var(--mobileheight{{section.id}}) !important;
+    }
+  }
+
+      
+  #shopify-section-{{ section.id}} .ultimate-component-background-image-mobile {
+    height: auto !important;
+    display:none;
+  }
+  #shopify-section-{{ section.id}} .ultimate-component-background-image {
+    height: auto !important;
+    display:block;
+  }
+  
+  #shopify-section-{{section.id}} {
+    margin-bottom:{{ section.settings.section_bottom_spacing_desktop | default: 0}}px;
+  }
+  
+  #shopify-section-{{ section.id}} .ultimate-component-content-right {
+    float: right;
+  }
+  
+  #shopify-section-{{ section.id}} .ultimate-component-content-left {
+    float: left;
+  }
+  
+  #shopify-section-{{ section.id}} .ultimate-component-content-center {
+    margin: 0 auto;
+    float: unset;
+  }
+      
+  #shopify-section-{{ section.id}} .ultimate-component-text-alignment-right {
+   text-align: right; 
+  }
+      
+  #shopify-section-{{ section.id}} .ultimate-component-text-alignment-left {
+   text-align: left; 
+  }
+      
+  #shopify-section-{{ section.id}} .ultimate-component-text-alignment-center {
+   text-align: center; 
+  }
+  
+  #shopify-section-{{ section.id}} .ultimate-component-page-width::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+  
+  #shopify-section-{{ section.id}} .ultimate-component-page-width {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  @media only screen and (max-width:1199px) {
+    #shopify-section-{{ section.id}} .ultimate-component-page-width {
+      max-width: 940px;
+    }
+  }
+  
+  @media only screen and (max-width:991px) {
+    #shopify-section-{{ section.id}} .ultimate-component-page-width {
+      max-width: 720px;
+    }
+  }
+  
+  @media only screen and (max-width:767px) {
+    #shopify-section-{{ section.id}} .ultimate-component-page-width {
+      max-width: 576px;
+    }
+  }
+  
+  @media only screen and (max-width:543px) {
+    #shopify-section-{{ section.id}} .ultimate-component-page-width {
+      max-width: 100%;
+    }
+  }
+  
+  #shopify-section-{{ section.id}} .ultimate-component-content p {
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+    letter-spacing: inherit;
+    line-height: inherit;
+  }
+  
+  #shopify-section-{{ section.id}} .ultimate-component-hyperlink {
+    width: 100%;
+  }
+  
+  #shopify-section-{{ section.id}} .ultimate-component-cover {
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  #shopify-section-{{ section.id}} .ultimate-component-container {
+    position: relative;
+    z-index: 0;
+  }
+  
+  #shopify-section-{{section.id}} {
+    position: relative;
+    z-index:{{ section.settings.z_index | default: '0' }};
+    margin-top:{{ section.settings.top_edge_margin | default: '0' }};
+    margin-bottom:{{ section.settings.bottom_edge_margin | default: '0' }};
+  }
+  
+  #shopify-section-{{section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-link {
+    display: flex;
+    align-items: {{ section.settings.content_items_alignment | default: 'center'}};
+    height: var(--height{{ section.id}} ) !important;
+  }
+  
+  #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-page-width {
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+  
+  @media only screen and (min-width: 1500px) {
+    #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-page-width {
+      max-width: 1400px;}}
+  
+  #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-content {
+    padding: 0;
+    width: 50%;
+  }
+  
+  #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-content .sub-title {
+    font-size: 34px;
+    text-transform: unset;
+    line-height: 34px;
+    margin-bottom: 20px;
+    letter-spacing: 0.8px;
+  }
+  
+  @media only screen and (max-width: 1499px) {
+    #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-content .sub-title {
+      font-size: 28px;
+      line-height: 30px;}}
+  
+  @media only screen and (max-width: 1199px) {
+    #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-content .sub-title {
+      font-size: 24px;
+      line-height: 26px;
+      margin-bottom: 15px;}}
+  
+  @media only screen and (max-width: 991px) {
+    #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-content .sub-title {
+      font-size: 20px;
+      line-height: 22px;
+      margin-bottom: 10px;
+    }
+  }
+  
+  #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-content .main-title {
+    font-size: 74px;
+    text-transform: unset;
+    line-height: 80px;
+    margin-bottom: 25px;
+    letter-spacing: 0.6px;
+    font-weight: 700;
+    font-family: var(--primary-font);
+  }
+  
+  @media only screen and (max-width: 1499px) {
+    #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-content .main-title {
+      font-size: 62px;
+      line-height: 70px;}}
+  
+  @media only screen and (max-width: 1199px) {
+    #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-content .main-title {
+      font-size: 48px;
+      line-height: 54px;
+      margin-bottom: 20px;}}
+  
+  @media only screen and (max-width: 991px) {
+    #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-content .main-title {
+      font-size: 38px;
+      line-height: 44px;
+      margin-bottom: 15px;
+    }
+  }
+  
+  #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-content .desc {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 25px;
+    letter-spacing: 0.5px;
+    font-weight: 400;
+    font-family: var(--primary-font);
+  }
+  
+  @media only screen and (max-width: 1499px) {
+    #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-content .desc {
+      font-size: 15px;}}
+  
+  @media only screen and (max-width: 1199px) {
+    #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-content .desc {
+      font-size: 14px;
+      margin-bottom: 35px;}}
+  
+  @media only screen and (max-width: 991px) {
+    #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-content .desc {
+      line-height: 22px;
+      margin-bottom: 20px;
+    }
+  }
+      
+      #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-content .desc p {
+        font-size:1.5em; 
+      }
+  
+  @media only screen and (max-width: 767px) {
+    #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-content .slider-btn {
+      font-size: 13px;
+      padding: 8px 17px;
+    }
+  }
+  
+  #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-content .sub-title,
+  #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-content .main-title,
+  #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-content .desc,
+  #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-content .slider-btn {
+    display: inline-flex !important;
+  }
+  
+  #shopify-section-{{section.id}}
+  
+  #shopify-section-{{ section.id}} .ultimate-component-container > #shopify-section-{{ section.id}} .ultimate-component-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: var(--height{{ section.id}} ) !important;
+  }
+  
+  #shopify-section-{{ section.id}} .ultimate-component-wrapper {
+    display: grid;
+    gap: 0px;
+    width: 100%;
+  }
+  
+  @media only screen and (min-width: 768px) {
+    #shopify-section-{{ section.id}} .ultimate-component-wrapper {
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;}}
+  
+  #shopify-section-{{ section.id}} .ultimate-component-content-split {
+    display: grid;
+    gap: 15px;
+    width: 100%;
+  }
+  
+  @media only screen and (min-width: 768px) {
+    #shopify-section-{{ section.id}} .ultimate-component-content-split {
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;}}
+  
+  @media only screen and (max-width: 767px) {
+    
+    
+  #shopify-section-{{section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-link {
+    align-items: {{ section.settings.content_items_mobile_alignment | default: 'center'}} !important;
+  }
+    
+    #shopify-section-{{ section.id}} {
+      margin-bottom: {{ section.settings.section_bottom_spacing_mobile | default: 0 }}px;
+    }
+    #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-link {
+      height: var(--mobileheight{{ section.id }}) !important;
+    }
+    #shopify-section-{{ section.id}} .ultimate-component-container > #shopify-section-{{ section.id}} .ultimate-component-block {
+      height: var(--mobileheight{{ section.id }}) !important;
+    }
+    #shopify-section-{{ section.id}} .ultimate-component-page-width {
+      padding-left: 5% !important;
+      padding-right: 5% !important;
+    }
+
+    #shopify-section-{{ section.id}} .ultimate-component-background-image {
+      display:none;
+    }
+
+    #shopify-section-{{ section.id}} .ultimate-component-background-image-mobile {
+      display:block;
+      height: calc( ( -1 * {{ section.settings.mobile_top_edge_margin | default: '0px' }} ) + ( -1 * {{ section.settings.mobile_bottom_edge_margin | default: '0px' }} ) + {{ section.settings.mobile_height | default: '0px' }}) !important;
+    }
+
+    #shopify-section-{{ section.id}} .ultimate-component-mobile-content-right {
+        float: right;
+    }
+    
+    #shopify-section-{{ section.id}} .ultimate-component-mobile-content-left {
+        float: left;
+    }
+    
+    #shopify-section-{{ section.id}} .ultimate-component-mobile-content-center {
+        margin: 0 auto;
+        float: unset;
+    }
+    
+    #shopify-section-{{ section.id}} .ultimate-component-mobile-text-alignment-right {
+     text-align: right; 
+    }
+
+    #shopify-section-{{ section.id}} .ultimate-component-mobile-text-alignment-left {
+     text-align: left; 
+    }
+
+    #shopify-section-{{ section.id}} .ultimate-component-mobile-text-alignment-center {
+     text-align: center; 
+    }
+
+    #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-content {
+      width: 100% !important;
+    
+    }
+    
+    #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-content p {
+      font-size:0.85em !important;
+      line-height:1em;
+    
+    }
+    
+    #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-content .desc p {
+      font-size:1em !important;
+      line-height:1em;
+    
+    }    
+  
+    #shopify-section-{{section.id}} {
+      margin-top:{{ section.settings.mobile_top_edge_margin | default: '0' }};
+      margin-bottom:{{ section.settings.mobile_bottom_edge_margin | default: '0' }};
+    }
+  
+  }
+  
+  #shopify-section-{{ section.id}} .ultimate-component-edges-container {
+    position: absolute;
+    width: 100%;
+    left: 0;
+  }
+</style>
+<script>
+  window.onload = function() {
+    
+    var list = document.getElementsByTagName('script');
+    var i = list.length, laxflag = false, yallflag = false;
+    while (i--) {
+        if (list[i].src === 'https://cdn.jsdelivr.net/npm/lax.js') {
+            laxflag = true;
+        }
+
+        if (list[i].src === 'https://cdn.jsdelivr.net/npm/yall-js@3.2.0/dist/yall.min.js') {
+            yallflag = true;
+        }
+    }
+
+    // if we didn't already find it on the page, add it
+    if (!laxflag) {
+        var tag = document.createElement('script');
+        tag.src = 'https://cdn.jsdelivr.net/npm/lax.js';
+        document.getElementsByTagName('body')[0].appendChild(tag);
+    
+        window.onload = function() {
+            lax.init()
+            // Add a driver that we use to control our animations
+            lax.addDriver('scrollY', function() {
+            return window.scrollY
+            });
+        };
+    };
+
+    if (!yallflag) {
+        var tag = document.createElement('script');
+        tag.src = 'https://cdn.jsdelivr.net/npm/yall-js@3.2.0/dist/yall.min.js';
+        document.getElementsByTagName('body')[0].appendChild(tag);
+    
+        window.onload = function() {
+            document.addEventListener("DOMContentLoaded", yall);
+        };
+    };
+
+  }
+</script> 
+
+{% schema %}
+{
+    "name": "Ultimate Component",
+    "class": "ultimate-compnent-section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "height",
+            "label": "Height",
+            "default": "70vh"
+        },
+        {
+            "type": "text",
+            "id": "class_name",
+            "label": "Class Name",
+            "default": "ultimate-component"
+        },
+        {
+            "type": "text",
+            "id": "z_index",
+            "label": "Z-Index",
+            "default": "1"
+        },
+        {
+            "type": "text",
+            "id": "top_edge_margin",
+            "label": "Top Edge Margin",
+            "default": "0px"
+        },
+        {
+            "type": "text",
+            "id": "bottom_edge_margin",
+            "label": "Bottom Edge Margin",
+            "default": "0px"
+        },
+
+        {
+            "type": "text",
+            "id": "mobile_top_edge_margin",
+            "label": "Mobile Top Edge Margin",
+            "default": "0px"
+        },
+        {
+            "type": "text",
+            "id": "mobile_bottom_edge_margin",
+            "label": "Mobile Bottom Edge Margin",
+            "default": "0px"
+        },
+        {
+            "type": "text",
+            "id": "mobile_height",
+            "label": "Mobile Height",
+            "default": "120%"
+        },
+        {
+            "type": "checkbox",
+            "id": "lazyload",
+            "label": "Lazy Load Images",
+            "default": true
+        },
+
+        {
+            "type": "select",
+            "id": "content_items_alignment",
+            "label": "Content Items Alignment",
+			"options": [
+              {
+              "value": "center",
+              "label": "center"
+              },
+              {
+              "value": "start",
+              "label": "start"
+              },
+              {
+              "value": "end",
+              "label": "end"
+              }
+            ],
+            "default": "center"
+        },
+
+        {
+            "type": "select",
+            "id": "content_items_mobile_alignment",
+            "label": "Mobile Content Items Alignment",
+			"options": [
+              {
+              "value": "center",
+              "label": "center"
+              },
+              {
+              "value": "start",
+              "label": "start"
+              },
+              {
+              "value": "end",
+              "label": "end"
+              }
+            ],
+            "default": "center"
+        },
+        {
+            "type": "header",
+            "content": "Section Bottom Spacing"
+        },
+        {
+            "type": "range",
+            "id": "section_bottom_spacing_desktop",
+            "label": "Desktop",
+            "min": 0,
+            "max": 70,
+            "step": 10,
+            "default": 0
+        },
+        {
+            "type": "range",
+            "id": "section_bottom_spacing_mobile",
+            "label": "Mobile",
+            "min": 0,
+            "max": 50,
+            "step": 10,
+            "default": 0
+        }
+    ],
+    "blocks": [
+        {
+            "type": "component",
+            "name": "Compnent",
+            "settings": [
+                {
+                    "id": "video_url",
+                    "type": "text",
+                    "label": "Video URL",
+                    "default": "https://cdn.shopify.com/s/files/1/0570/0976/6600/files/roasting-2.mp4?v=1649793330",
+                    "info": "Optional"
+                },
+                {
+                    "id": "video_fallback_image",
+                    "type": "image_picker",
+                    "label": "Video Fallback Image",
+                    "info": "Optional"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "video_loop",
+                    "label": "Loop Video",
+                    "default": true
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image",
+                    "info": "Size: 1920px X 800px"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "mobile_image",
+                    "label": "Mobile Image",
+                    "info": "Size: 1920px X 800px"
+                },
+                {
+                    "type": "color_background",
+                    "id": "background_overlay",
+                    "label": "Background Overlay Color",
+                    "default": "linear-gradient(rgba(10,10,10,0.75), rgba(0,0,0,0.75))"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image_overlay",
+                    "label": "Image Overlay",
+                    "info": "Size: 1920px X 800px"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "image_overlay_use_animation",
+                    "label": "Use image_overlay Animation",
+                    "default": false
+                },
+                {
+                    "type": "select",
+                    "id": "image_overlay_animation_delay",
+                    "label": "image_overlay Animation Delay",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "1 second"
+                        },
+                        {
+                            "value": "2s",
+                            "label": "2 seconds"
+                        },
+                        {
+                            "value": "3s",
+                            "label": "3 seconds"
+                        },
+                        {
+                            "value": "4s",
+                            "label": "4 seconds"
+                        },
+                        {
+                            "value": "5s",
+                            "label": "5 seconds"
+                        }
+                    ],
+                    "default": ""
+                },
+                {
+                    "type": "select",
+                    "id": "image_overlay_animation_speed",
+                    "label": "image_overlay Animation Speed",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "Normal"
+                        },
+                        {
+                            "value": "slow",
+                            "label": "Slow"
+                        },
+                        {
+                            "value": "slower",
+                            "label": "Slower"
+                        },
+                        {
+                            "value": "fast",
+                            "label": "Fast"
+                        },
+                        {
+                            "value": "faster",
+                            "label": "Faster"
+                        }
+                    ],
+                    "default": ""
+                },
+                {
+                    "type": "select",
+                    "id": "image_overlay_animation_repeat",
+                    "label": "image_overlay Animation Repeat",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "None"
+                        },
+                        {
+                            "value": "repeat-1",
+                            "label": "Repeat Once"
+                        },
+                        {
+                            "value": "repeat-2",
+                            "label": "Repeat Twice"
+                        },
+                        {
+                            "value": "repeat-3",
+                            "label": "Repeat Three Times"
+                        },
+                        {
+                            "value": "infinite",
+                            "label": "Repeat Forever"
+                        }
+                    ],
+                    "default": ""
+                },
+                {
+                    "type": "select",
+                    "id": "image_overlay_animation",
+                    "label": "image_overlay Animation",
+                    "options": [
+                        {
+                            "value": "bounce",
+                            "label": "bounce"
+                        },
+                        {
+                            "value": "flash",
+                            "label": "flash"
+                        },
+                        {
+                            "value": "pulse",
+                            "label": "pulse"
+                        },
+                        {
+                            "value": "rubberBand",
+                            "label": "rubberBand"
+                        },
+                        {
+                            "value": "shakeX",
+                            "label": "shakeX"
+                        },
+                        {
+                            "value": "shakeY",
+                            "label": "shakeY"
+                        },
+                        {
+                            "value": "headShake",
+                            "label": "headShake"
+                        },
+                        {
+                            "value": "swing",
+                            "label": "swing"
+                        },
+                        {
+                            "value": "tada",
+                            "label": "tada"
+                        },
+                        {
+                            "value": "wobble",
+                            "label": "wobble"
+                        },
+                        {
+                            "value": "jello",
+                            "label": "jello"
+                        },
+                        {
+                            "value": "heartBeat",
+                            "label": "heartBeat"
+                        },
+                        {
+                            "value": "backInDown",
+                            "label": "backInDown"
+                        },
+                        {
+                            "value": "backInLeft",
+                            "label": "backInLeft"
+                        },
+                        {
+                            "value": "backInRight",
+                            "label": "backInRight"
+                        },
+                        {
+                            "value": "backInUp",
+                            "label": "backInUp"
+                        },
+                        {
+                            "value": "backOutDown",
+                            "label": "backOutDown"
+                        },
+                        {
+                            "value": "backOutLeft",
+                            "label": "backOutLeft"
+                        },
+                        {
+                            "value": "backOutRight",
+                            "label": "backOutRight"
+                        },
+                        {
+                            "value": "backOutUp",
+                            "label": "backOutUp"
+                        },
+                        {
+                            "value": "bounceIn",
+                            "label": "bounceIn"
+                        },
+                        {
+                            "value": "bounceInDown",
+                            "label": "bounceInDown"
+                        },
+                        {
+                            "value": "bounceInLeft",
+                            "label": "bounceInLeft"
+                        },
+                        {
+                            "value": "bounceInRight",
+                            "label": "bounceInRight"
+                        },
+                        {
+                            "value": "bounceInUp",
+                            "label": "bounceInUp"
+                        },
+                        {
+                            "value": "bounceOut",
+                            "label": "bounceOut"
+                        },
+                        {
+                            "value": "bounceOutDown",
+                            "label": "bounceOutDown"
+                        },
+                        {
+                            "value": "bounceOutLeft",
+                            "label": "bounceOutLeft"
+                        },
+                        {
+                            "value": "bounceOutRight",
+                            "label": "bounceOutRight"
+                        },
+                        {
+                            "value": "bounceOutUp",
+                            "label": "bounceOutUp"
+                        },
+                        {
+                            "value": "fadeIn",
+                            "label": "fadeIn"
+                        },
+                        {
+                            "value": "fadeInDown",
+                            "label": "fadeInDown"
+                        },
+                        {
+                            "value": "fadeInDownBig",
+                            "label": "fadeInDownBig"
+                        },
+                        {
+                            "value": "fadeInLeft",
+                            "label": "fadeInLeft"
+                        },
+                        {
+                            "value": "fadeInLeftBig",
+                            "label": "fadeInLeftBig"
+                        },
+                        {
+                            "value": "fadeInRight",
+                            "label": "fadeInRight"
+                        },
+                        {
+                            "value": "fadeInRightBig",
+                            "label": "fadeInRightBig"
+                        },
+                        {
+                            "value": "fadeInUp",
+                            "label": "fadeInUp"
+                        },
+                        {
+                            "value": "fadeInUpBig",
+                            "label": "fadeInUpBig"
+                        },
+                        {
+                            "value": "fadeInTopLeft",
+                            "label": "fadeInTopLeft"
+                        },
+                        {
+                            "value": "fadeInTopRight",
+                            "label": "fadeInTopRight"
+                        },
+                        {
+                            "value": "fadeInBottomLeft",
+                            "label": "fadeInBottomLeft"
+                        },
+                        {
+                            "value": "fadeInBottomRight",
+                            "label": "fadeInBottomRight"
+                        },
+                        {
+                            "value": "fadeOut",
+                            "label": "fadeOut"
+                        },
+                        {
+                            "value": "fadeOutDown",
+                            "label": "fadeOutDown"
+                        },
+                        {
+                            "value": "fadeOutDownBig",
+                            "label": "fadeOutDownBig"
+                        },
+                        {
+                            "value": "fadeOutLeft",
+                            "label": "fadeOutLeft"
+                        },
+                        {
+                            "value": "fadeOutLeftBig",
+                            "label": "fadeOutLeftBig"
+                        },
+                        {
+                            "value": "fadeOutRight",
+                            "label": "fadeOutRight"
+                        },
+                        {
+                            "value": "fadeOutRightBig",
+                            "label": "fadeOutRightBig"
+                        },
+                        {
+                            "value": "fadeOutUp",
+                            "label": "fadeOutUp"
+                        },
+                        {
+                            "value": "fadeOutUpBig",
+                            "label": "fadeOutUpBig"
+                        },
+                        {
+                            "value": "fadeOutTopLeft",
+                            "label": "fadeOutTopLeft"
+                        },
+                        {
+                            "value": "fadeOutTopRight",
+                            "label": "fadeOutTopRight"
+                        },
+                        {
+                            "value": "fadeOutBottomRight",
+                            "label": "fadeOutBottomRight"
+                        },
+                        {
+                            "value": "fadeOutBottomLeft",
+                            "label": "fadeOutBottomLeft"
+                        },
+                        {
+                            "value": "flip",
+                            "label": "flip"
+                        },
+                        {
+                            "value": "flipInX",
+                            "label": "flipInX"
+                        },
+                        {
+                            "value": "flipInY",
+                            "label": "flipInY"
+                        },
+                        {
+                            "value": "flipOutX",
+                            "label": "flipOutX"
+                        },
+                        {
+                            "value": "flipOutY",
+                            "label": "flipOutY"
+                        },
+                        {
+                            "value": "lightSpeedInRight",
+                            "label": "lightSpeedInRight"
+                        },
+                        {
+                            "value": "lightSpeedInLeft",
+                            "label": "lightSpeedInLeft"
+                        },
+                        {
+                            "value": "lightSpeedOutRight",
+                            "label": "lightSpeedOutRight"
+                        },
+                        {
+                            "value": "lightSpeedOutLeft",
+                            "label": "lightSpeedOutLeft"
+                        },
+                        {
+                            "value": "rotateIn",
+                            "label": "rotateIn"
+                        },
+                        {
+                            "value": "rotateInDownLeft",
+                            "label": "rotateInDownLeft"
+                        },
+                        {
+                            "value": "rotateInDownRight",
+                            "label": "rotateInDownRight"
+                        },
+                        {
+                            "value": "rotateInUpLeft",
+                            "label": "rotateInUpLeft"
+                        },
+                        {
+                            "value": "rotateInUpRight",
+                            "label": "rotateInUpRight"
+                        },
+                        {
+                            "value": "rotateOut",
+                            "label": "rotateOut"
+                        },
+                        {
+                            "value": "rotateOutDownLeft",
+                            "label": "rotateOutDownLeft"
+                        },
+                        {
+                            "value": "rotateOutDownRight",
+                            "label": "rotateOutDownRight"
+                        },
+                        {
+                            "value": "rotateOutUpLeft",
+                            "label": "rotateOutUpLeft"
+                        },
+                        {
+                            "value": "rotateOutUpRight",
+                            "label": "rotateOutUpRight"
+                        },
+                        {
+                            "value": "hinge",
+                            "label": "hinge"
+                        },
+                        {
+                            "value": "jackInTheBox",
+                            "label": "jackInTheBox"
+                        },
+                        {
+                            "value": "rollIn",
+                            "label": "rollIn"
+                        },
+                        {
+                            "value": "rollOut",
+                            "label": "rollOut"
+                        },
+                        {
+                            "value": "zoomIn",
+                            "label": "zoomIn"
+                        },
+                        {
+                            "value": "zoomInDown",
+                            "label": "zoomInDown"
+                        },
+                        {
+                            "value": "zoomInLeft",
+                            "label": "zoomInLeft"
+                        },
+                        {
+                            "value": "zoomInRight",
+                            "label": "zoomInRight"
+                        },
+                        {
+                            "value": "zoomInUp",
+                            "label": "zoomInUp"
+                        },
+                        {
+                            "value": "zoomOut",
+                            "label": "zoomOut"
+                        },
+                        {
+                            "value": "zoomOutDown",
+                            "label": "zoomOutDown"
+                        },
+                        {
+                            "value": "zoomOutLeft",
+                            "label": "zoomOutLeft"
+                        },
+                        {
+                            "value": "zoomOutRight",
+                            "label": "zoomOutRight"
+                        },
+                        {
+                            "value": "zoomOutUp",
+                            "label": "zoomOutUp"
+                        },
+                        {
+                            "value": "slideInDown",
+                            "label": "slideInDown"
+                        },
+                        {
+                            "value": "slideInLeft",
+                            "label": "slideInLeft"
+                        },
+                        {
+                            "value": "slideInRight",
+                            "label": "slideInRight"
+                        },
+                        {
+                            "value": "slideInUp",
+                            "label": "slideInUp"
+                        },
+                        {
+                            "value": "slideOutDown",
+                            "label": "slideOutDown"
+                        },
+                        {
+                            "value": "slideOutLeft",
+                            "label": "slideOutLeft"
+                        },
+                        {
+                            "value": "slideOutRight",
+                            "label": "slideOutRight"
+                        },
+                        {
+                            "value": "slideOutUp",
+                            "label": "slideOutUp"
+                        }
+                    ],
+                    "default": "fadeIn"
+                },
+                {
+                    "type": "select",
+                    "id": "image_overlay_paralax_preset",
+                    "label": "image_overlay paralax Preset",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "None"
+                        },
+                        {
+                            "value": "fadeIn",
+                            "label": "fadeIn"
+                        },
+                        {
+                            "value": "fadeOut",
+                            "label": "fadeOut"
+                        },
+                        {
+                            "value": "fadeInOut",
+                            "label": "fadeInOut"
+                        },
+                        {
+                            "value": "scaleIn",
+                            "label": "scaleIn"
+                        },
+                        {
+                            "value": "scaleOut",
+                            "label": "scaleOut"
+                        },
+                        {
+                            "value": "scaleInOut",
+                            "label": "scaleInOut"
+                        },
+                        {
+                            "value": "slideX",
+                            "label": "slideX"
+                        },
+                        {
+                            "value": "slideY",
+                            "label": "slideY"
+                        },
+                        {
+                            "value": "jiggle",
+                            "label": "jiggle"
+                        },
+                        {
+                            "value": "seesaw",
+                            "label": "seesaw"
+                        },
+                        {
+                            "value": "zigzag",
+                            "label": "zigzag"
+                        },
+                        {
+                            "value": "hueRotate",
+                            "label": "hueRotate"
+                        },
+                        {
+                            "value": "spin",
+                            "label": "spin"
+                        },
+                        {
+                            "value": "flipX",
+                            "label": "flipX"
+                        },
+                        {
+                            "value": "flipY",
+                            "label": "flipY"
+                        },
+                        {
+                            "value": "blurIn",
+                            "label": "blurIn"
+                        },
+                        {
+                            "value": "blurOut",
+                            "label": "blurOut"
+                        },
+                        {
+                            "value": "blurInOut",
+                            "label": "blurInOut"
+                        }
+                    ],
+                    "default": ""
+                },
+                {
+                    "type": "number",
+                    "id": "image_overlay_paralax_distance",
+                    "label": "image_overlay paralax Distance",
+                    "default": 20
+                },
+                {
+                    "type": "number",
+                    "id": "image_overlay_paralax_strength",
+                    "label": "image_overlay paralax Strength",
+                    "default": 20
+                },
+                {
+                    "type": "image_picker",
+                    "id": "top_edge_image",
+                    "label": "Top Edge",
+                    "info": "Size: 1920px X 800px"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "bottom_edge_image",
+                    "label": "Bottom Edge",
+                    "info": "Size: 1920px X 800px"
+                },
+                {
+                    "type": "text",
+                    "id": "top_edge_height",
+                    "label": "Top Edge Height",
+                    "default": "10vh"
+                },
+                {
+                    "type": "text",
+                    "id": "bottom_edge_height",
+                    "label": "Bottom Edge Height",
+                    "default": "10vh"
+                },
+                {
+                    "type": "text",
+                    "id": "max_width",
+                    "label": "Text Max Width"
+                },
+                {
+                    "type": "select",
+                    "id": "text_position",
+                    "label": "Text Position",
+                    "default": "left",
+                    "options": [
+                        {
+                            "value": "left",
+                            "label": "Left"
+                        },
+                        {
+                            "value": "center",
+                            "label": "Center"
+                        },
+                        {
+                            "value": "right",
+                            "label": "Right"
+                        }
+                    ]
+                },
+                {
+                    "type": "select",
+                    "id": "mobile_text_position",
+                    "label": "Mobile Text Position",
+                    "default": "left",
+                    "options": [
+                        {
+                            "value": "left",
+                            "label": "Left"
+                        },
+                        {
+                            "value": "center",
+                            "label": "Center"
+                        },
+                        {
+                            "value": "right",
+                            "label": "Right"
+                        }
+                    ]
+                },
+                {
+                    "type": "select",
+                    "id": "textalignment",
+                    "label": "Text Alignment",
+                    "default": "left",
+                    "options": [
+                        {
+                            "value": "left",
+                            "label": "Left"
+                        },
+                        {
+                            "value": "center",
+                            "label": "Center"
+                        },
+                        {
+                            "value": "right",
+                            "label": "Right"
+                        }
+                    ]
+                },
+                {
+                    "type": "select",
+                    "id": "mobile_textalignment",
+                    "label": "Mobile Text Alignment",
+                    "default": "left",
+                    "options": [
+                        {
+                            "value": "left",
+                            "label": "Left"
+                        },
+                        {
+                            "value": "center",
+                            "label": "Center"
+                        },
+                        {
+                            "value": "right",
+                            "label": "Right"
+                        }
+                    ]
+                },
+                {
+                    "type": "select",
+                    "id": "layout",
+                    "label": "Text Section Layout",
+                    "default": "stack",
+                    "options": [
+                        {
+                            "value": "stack",
+                            "label": "Stack Vertically"
+                        },
+                        {
+                            "value": "split",
+                            "label": "Split Into Columns"
+                        }
+                    ]
+                },
+                {
+                    "type": "richtext",
+                    "id": "subtitle",
+                    "label": "Subtitle",
+                    "default": "<p>It's a wonderful day!</p>"
+                },
+                {
+                    "type": "html",
+                    "id": "subtitle_html",
+                    "label": "Subtitle(html)"
+                },
+                {
+                    "type": "color",
+                    "id": "subtitlecolor",
+                    "label": "Subtitle Color",
+                    "default": "#FFFFFF"
+                },
+                {
+                    "type": "text",
+                    "id": "subtitle_css_classes",
+                    "label": "Subtitle CSS Classes",
+                    "default": "sub-title"
+                },
+                {
+                    "type": "richtext",
+                    "id": "maintitle",
+                    "label": "Title",
+                    "default": "<p>Hello World</p>"
+                },
+                {
+                    "type": "html",
+                    "id": "maintitle_html",
+                    "label": "Title(html)"
+                },
+                {
+                    "type": "color",
+                    "id": "maintitlecolor",
+                    "label": "Title Color",
+                    "default": "#FFFFFF"
+                },
+                {
+                    "type": "text",
+                    "id": "maintitle_css_classes",
+                    "label": "Title CSS Classes",
+                    "default": "main-title"
+                },
+                {
+                    "type": "richtext",
+                    "id": "desc",
+                    "label": "Description",
+                    "default": "<p>The sky outside is wonderful wouldn't you say?</p>"
+                },
+                {
+                    "type": "html",
+                    "id": "desc_html",
+                    "label": "Description(html)"
+                },
+                {
+                    "type": "color",
+                    "id": "desccolor",
+                    "label": "Description Color",
+                    "default": "#FFFFFF"
+                },
+                {
+                    "type": "text",
+                    "id": "desc_css_classes",
+                    "label": "Description CSS Classes",
+                    "default": "desc"
+                },
+                {
+                    "type": "text",
+                    "id": "button_label",
+                    "label": "Button Label",
+                    "default": "Let's Go Outside!"
+                },
+                {
+                    "type": "url",
+                    "id": "link",
+                    "label": "Link",
+                    "info": "Optional"
+                },
+                {
+                    "type": "text",
+                    "id": "padding_top",
+                    "label": "Padding Top",
+                    "default": "0px"
+                },
+                {
+                    "type": "text",
+                    "id": "padding_bottom",
+                    "label": "Padding Bottom",
+                    "default": "0px"
+                },
+                {
+                    "type": "text",
+                    "id": "padding_left",
+                    "label": "Padding Left",
+                    "default": "10%"
+                },
+                {
+                    "type": "text",
+                    "id": "padding_right",
+                    "label": "Padding Right",
+                    "default": "10%"
+                },
+                {
+                    "type": "select",
+                    "id": "paralax_driver",
+                    "label": "paralax Driver",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "None"
+                        },
+                        {
+                            "value": "scroll",
+                            "label": "Scroll"
+                        }
+                    ],
+                    "default": ""
+                },
+                {
+                    "type": "checkbox",
+                    "id": "heading_use_animation",
+                    "label": "Use Heading Animation",
+                    "default": false
+                },
+                {
+                    "type": "select",
+                    "id": "heading_animation_delay",
+                    "label": "Heading Animation Delay",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "1 second"
+                        },
+                        {
+                            "value": "2s",
+                            "label": "2 seconds"
+                        },
+                        {
+                            "value": "3s",
+                            "label": "3 seconds"
+                        },
+                        {
+                            "value": "4s",
+                            "label": "4 seconds"
+                        },
+                        {
+                            "value": "5s",
+                            "label": "5 seconds"
+                        }
+                    ],
+                    "default": ""
+                },
+                {
+                    "type": "select",
+                    "id": "heading_animation_speed",
+                    "label": "Heading Animation Speed",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "Normal"
+                        },
+                        {
+                            "value": "slow",
+                            "label": "Slow"
+                        },
+                        {
+                            "value": "slower",
+                            "label": "Slower"
+                        },
+                        {
+                            "value": "fast",
+                            "label": "Fast"
+                        },
+                        {
+                            "value": "faster",
+                            "label": "Faster"
+                        }
+                    ],
+                    "default": ""
+                },
+                {
+                    "type": "select",
+                    "id": "heading_animation_repeat",
+                    "label": "Heading Animation Repeat",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "None"
+                        },
+                        {
+                            "value": "repeat-1",
+                            "label": "Repeat Once"
+                        },
+                        {
+                            "value": "repeat-2",
+                            "label": "Repeat Twice"
+                        },
+                        {
+                            "value": "repeat-3",
+                            "label": "Repeat Three Times"
+                        },
+                        {
+                            "value": "infinite",
+                            "label": "Repeat Forever"
+                        }
+                    ],
+                    "default": ""
+                },
+                {
+                    "type": "select",
+                    "id": "heading_animation",
+                    "label": "Heading Animation",
+                    "options": [
+                        {
+                            "value": "bounce",
+                            "label": "bounce"
+                        },
+                        {
+                            "value": "flash",
+                            "label": "flash"
+                        },
+                        {
+                            "value": "pulse",
+                            "label": "pulse"
+                        },
+                        {
+                            "value": "rubberBand",
+                            "label": "rubberBand"
+                        },
+                        {
+                            "value": "shakeX",
+                            "label": "shakeX"
+                        },
+                        {
+                            "value": "shakeY",
+                            "label": "shakeY"
+                        },
+                        {
+                            "value": "headShake",
+                            "label": "headShake"
+                        },
+                        {
+                            "value": "swing",
+                            "label": "swing"
+                        },
+                        {
+                            "value": "tada",
+                            "label": "tada"
+                        },
+                        {
+                            "value": "wobble",
+                            "label": "wobble"
+                        },
+                        {
+                            "value": "jello",
+                            "label": "jello"
+                        },
+                        {
+                            "value": "heartBeat",
+                            "label": "heartBeat"
+                        },
+                        {
+                            "value": "backInDown",
+                            "label": "backInDown"
+                        },
+                        {
+                            "value": "backInLeft",
+                            "label": "backInLeft"
+                        },
+                        {
+                            "value": "backInRight",
+                            "label": "backInRight"
+                        },
+                        {
+                            "value": "backInUp",
+                            "label": "backInUp"
+                        },
+                        {
+                            "value": "backOutDown",
+                            "label": "backOutDown"
+                        },
+                        {
+                            "value": "backOutLeft",
+                            "label": "backOutLeft"
+                        },
+                        {
+                            "value": "backOutRight",
+                            "label": "backOutRight"
+                        },
+                        {
+                            "value": "backOutUp",
+                            "label": "backOutUp"
+                        },
+                        {
+                            "value": "bounceIn",
+                            "label": "bounceIn"
+                        },
+                        {
+                            "value": "bounceInDown",
+                            "label": "bounceInDown"
+                        },
+                        {
+                            "value": "bounceInLeft",
+                            "label": "bounceInLeft"
+                        },
+                        {
+                            "value": "bounceInRight",
+                            "label": "bounceInRight"
+                        },
+                        {
+                            "value": "bounceInUp",
+                            "label": "bounceInUp"
+                        },
+                        {
+                            "value": "bounceOut",
+                            "label": "bounceOut"
+                        },
+                        {
+                            "value": "bounceOutDown",
+                            "label": "bounceOutDown"
+                        },
+                        {
+                            "value": "bounceOutLeft",
+                            "label": "bounceOutLeft"
+                        },
+                        {
+                            "value": "bounceOutRight",
+                            "label": "bounceOutRight"
+                        },
+                        {
+                            "value": "bounceOutUp",
+                            "label": "bounceOutUp"
+                        },
+                        {
+                            "value": "fadeIn",
+                            "label": "fadeIn"
+                        },
+                        {
+                            "value": "fadeInDown",
+                            "label": "fadeInDown"
+                        },
+                        {
+                            "value": "fadeInDownBig",
+                            "label": "fadeInDownBig"
+                        },
+                        {
+                            "value": "fadeInLeft",
+                            "label": "fadeInLeft"
+                        },
+                        {
+                            "value": "fadeInLeftBig",
+                            "label": "fadeInLeftBig"
+                        },
+                        {
+                            "value": "fadeInRight",
+                            "label": "fadeInRight"
+                        },
+                        {
+                            "value": "fadeInRightBig",
+                            "label": "fadeInRightBig"
+                        },
+                        {
+                            "value": "fadeInUp",
+                            "label": "fadeInUp"
+                        },
+                        {
+                            "value": "fadeInUpBig",
+                            "label": "fadeInUpBig"
+                        },
+                        {
+                            "value": "fadeInTopLeft",
+                            "label": "fadeInTopLeft"
+                        },
+                        {
+                            "value": "fadeInTopRight",
+                            "label": "fadeInTopRight"
+                        },
+                        {
+                            "value": "fadeInBottomLeft",
+                            "label": "fadeInBottomLeft"
+                        },
+                        {
+                            "value": "fadeInBottomRight",
+                            "label": "fadeInBottomRight"
+                        },
+                        {
+                            "value": "fadeOut",
+                            "label": "fadeOut"
+                        },
+                        {
+                            "value": "fadeOutDown",
+                            "label": "fadeOutDown"
+                        },
+                        {
+                            "value": "fadeOutDownBig",
+                            "label": "fadeOutDownBig"
+                        },
+                        {
+                            "value": "fadeOutLeft",
+                            "label": "fadeOutLeft"
+                        },
+                        {
+                            "value": "fadeOutLeftBig",
+                            "label": "fadeOutLeftBig"
+                        },
+                        {
+                            "value": "fadeOutRight",
+                            "label": "fadeOutRight"
+                        },
+                        {
+                            "value": "fadeOutRightBig",
+                            "label": "fadeOutRightBig"
+                        },
+                        {
+                            "value": "fadeOutUp",
+                            "label": "fadeOutUp"
+                        },
+                        {
+                            "value": "fadeOutUpBig",
+                            "label": "fadeOutUpBig"
+                        },
+                        {
+                            "value": "fadeOutTopLeft",
+                            "label": "fadeOutTopLeft"
+                        },
+                        {
+                            "value": "fadeOutTopRight",
+                            "label": "fadeOutTopRight"
+                        },
+                        {
+                            "value": "fadeOutBottomRight",
+                            "label": "fadeOutBottomRight"
+                        },
+                        {
+                            "value": "fadeOutBottomLeft",
+                            "label": "fadeOutBottomLeft"
+                        },
+                        {
+                            "value": "flip",
+                            "label": "flip"
+                        },
+                        {
+                            "value": "flipInX",
+                            "label": "flipInX"
+                        },
+                        {
+                            "value": "flipInY",
+                            "label": "flipInY"
+                        },
+                        {
+                            "value": "flipOutX",
+                            "label": "flipOutX"
+                        },
+                        {
+                            "value": "flipOutY",
+                            "label": "flipOutY"
+                        },
+                        {
+                            "value": "lightSpeedInRight",
+                            "label": "lightSpeedInRight"
+                        },
+                        {
+                            "value": "lightSpeedInLeft",
+                            "label": "lightSpeedInLeft"
+                        },
+                        {
+                            "value": "lightSpeedOutRight",
+                            "label": "lightSpeedOutRight"
+                        },
+                        {
+                            "value": "lightSpeedOutLeft",
+                            "label": "lightSpeedOutLeft"
+                        },
+                        {
+                            "value": "rotateIn",
+                            "label": "rotateIn"
+                        },
+                        {
+                            "value": "rotateInDownLeft",
+                            "label": "rotateInDownLeft"
+                        },
+                        {
+                            "value": "rotateInDownRight",
+                            "label": "rotateInDownRight"
+                        },
+                        {
+                            "value": "rotateInUpLeft",
+                            "label": "rotateInUpLeft"
+                        },
+                        {
+                            "value": "rotateInUpRight",
+                            "label": "rotateInUpRight"
+                        },
+                        {
+                            "value": "rotateOut",
+                            "label": "rotateOut"
+                        },
+                        {
+                            "value": "rotateOutDownLeft",
+                            "label": "rotateOutDownLeft"
+                        },
+                        {
+                            "value": "rotateOutDownRight",
+                            "label": "rotateOutDownRight"
+                        },
+                        {
+                            "value": "rotateOutUpLeft",
+                            "label": "rotateOutUpLeft"
+                        },
+                        {
+                            "value": "rotateOutUpRight",
+                            "label": "rotateOutUpRight"
+                        },
+                        {
+                            "value": "hinge",
+                            "label": "hinge"
+                        },
+                        {
+                            "value": "jackInTheBox",
+                            "label": "jackInTheBox"
+                        },
+                        {
+                            "value": "rollIn",
+                            "label": "rollIn"
+                        },
+                        {
+                            "value": "rollOut",
+                            "label": "rollOut"
+                        },
+                        {
+                            "value": "zoomIn",
+                            "label": "zoomIn"
+                        },
+                        {
+                            "value": "zoomInDown",
+                            "label": "zoomInDown"
+                        },
+                        {
+                            "value": "zoomInLeft",
+                            "label": "zoomInLeft"
+                        },
+                        {
+                            "value": "zoomInRight",
+                            "label": "zoomInRight"
+                        },
+                        {
+                            "value": "zoomInUp",
+                            "label": "zoomInUp"
+                        },
+                        {
+                            "value": "zoomOut",
+                            "label": "zoomOut"
+                        },
+                        {
+                            "value": "zoomOutDown",
+                            "label": "zoomOutDown"
+                        },
+                        {
+                            "value": "zoomOutLeft",
+                            "label": "zoomOutLeft"
+                        },
+                        {
+                            "value": "zoomOutRight",
+                            "label": "zoomOutRight"
+                        },
+                        {
+                            "value": "zoomOutUp",
+                            "label": "zoomOutUp"
+                        },
+                        {
+                            "value": "slideInDown",
+                            "label": "slideInDown"
+                        },
+                        {
+                            "value": "slideInLeft",
+                            "label": "slideInLeft"
+                        },
+                        {
+                            "value": "slideInRight",
+                            "label": "slideInRight"
+                        },
+                        {
+                            "value": "slideInUp",
+                            "label": "slideInUp"
+                        },
+                        {
+                            "value": "slideOutDown",
+                            "label": "slideOutDown"
+                        },
+                        {
+                            "value": "slideOutLeft",
+                            "label": "slideOutLeft"
+                        },
+                        {
+                            "value": "slideOutRight",
+                            "label": "slideOutRight"
+                        },
+                        {
+                            "value": "slideOutUp",
+                            "label": "slideOutUp"
+                        }
+                    ],
+                    "default": "fadeIn"
+                },
+                {
+                    "type": "select",
+                    "id": "heading_paralax_preset",
+                    "label": "Heading paralax Preset",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "None"
+                        },
+                        {
+                            "value": "fadeIn",
+                            "label": "fadeIn"
+                        },
+                        {
+                            "value": "fadeOut",
+                            "label": "fadeOut"
+                        },
+                        {
+                            "value": "fadeInOut",
+                            "label": "fadeInOut"
+                        },
+                        {
+                            "value": "scaleIn",
+                            "label": "scaleIn"
+                        },
+                        {
+                            "value": "scaleOut",
+                            "label": "scaleOut"
+                        },
+                        {
+                            "value": "scaleInOut",
+                            "label": "scaleInOut"
+                        },
+                        {
+                            "value": "slideX",
+                            "label": "slideX"
+                        },
+                        {
+                            "value": "slideY",
+                            "label": "slideY"
+                        },
+                        {
+                            "value": "jiggle",
+                            "label": "jiggle"
+                        },
+                        {
+                            "value": "seesaw",
+                            "label": "seesaw"
+                        },
+                        {
+                            "value": "zigzag",
+                            "label": "zigzag"
+                        },
+                        {
+                            "value": "hueRotate",
+                            "label": "hueRotate"
+                        },
+                        {
+                            "value": "spin",
+                            "label": "spin"
+                        },
+                        {
+                            "value": "flipX",
+                            "label": "flipX"
+                        },
+                        {
+                            "value": "flipY",
+                            "label": "flipY"
+                        },
+                        {
+                            "value": "blurIn",
+                            "label": "blurIn"
+                        },
+                        {
+                            "value": "blurOut",
+                            "label": "blurOut"
+                        },
+                        {
+                            "value": "blurInOut",
+                            "label": "blurInOut"
+                        }
+                    ],
+                    "default": ""
+                },
+                {
+                    "type": "number",
+                    "id": "heading_paralax_distance",
+                    "label": "Heading paralax Distance",
+                    "default": 20
+                },
+                {
+                    "type": "number",
+                    "id": "heading_paralax_strength",
+                    "label": "Heading paralax Strength",
+                    "default": 20
+                },
+                {
+                    "type": "checkbox",
+                    "id": "subtitle_use_animation",
+                    "label": "Use subtitle Animation",
+                    "default": false
+                },
+                {
+                    "type": "select",
+                    "id": "subtitle_animation_delay",
+                    "label": "subtitle Animation Delay",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "1 second"
+                        },
+                        {
+                            "value": "2s",
+                            "label": "2 seconds"
+                        },
+                        {
+                            "value": "3s",
+                            "label": "3 seconds"
+                        },
+                        {
+                            "value": "4s",
+                            "label": "4 seconds"
+                        },
+                        {
+                            "value": "5s",
+                            "label": "5 seconds"
+                        }
+                    ],
+                    "default": ""
+                },
+                {
+                    "type": "select",
+                    "id": "subtitle_animation_speed",
+                    "label": "subtitle Animation Speed",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "Normal"
+                        },
+                        {
+                            "value": "slow",
+                            "label": "Slow"
+                        },
+                        {
+                            "value": "slower",
+                            "label": "Slower"
+                        },
+                        {
+                            "value": "fast",
+                            "label": "Fast"
+                        },
+                        {
+                            "value": "faster",
+                            "label": "Faster"
+                        }
+                    ],
+                    "default": ""
+                },
+                {
+                    "type": "select",
+                    "id": "subtitle_animation_repeat",
+                    "label": "subtitle Animation Repeat",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "None"
+                        },
+                        {
+                            "value": "repeat-1",
+                            "label": "Repeat Once"
+                        },
+                        {
+                            "value": "repeat-2",
+                            "label": "Repeat Twice"
+                        },
+                        {
+                            "value": "repeat-3",
+                            "label": "Repeat Three Times"
+                        },
+                        {
+                            "value": "infinite",
+                            "label": "Repeat Forever"
+                        }
+                    ],
+                    "default": ""
+                },
+                {
+                    "type": "select",
+                    "id": "subtitle_animation",
+                    "label": "subtitle Animation",
+                    "options": [
+                        {
+                            "value": "bounce",
+                            "label": "bounce"
+                        },
+                        {
+                            "value": "flash",
+                            "label": "flash"
+                        },
+                        {
+                            "value": "pulse",
+                            "label": "pulse"
+                        },
+                        {
+                            "value": "rubberBand",
+                            "label": "rubberBand"
+                        },
+                        {
+                            "value": "shakeX",
+                            "label": "shakeX"
+                        },
+                        {
+                            "value": "shakeY",
+                            "label": "shakeY"
+                        },
+                        {
+                            "value": "headShake",
+                            "label": "headShake"
+                        },
+                        {
+                            "value": "swing",
+                            "label": "swing"
+                        },
+                        {
+                            "value": "tada",
+                            "label": "tada"
+                        },
+                        {
+                            "value": "wobble",
+                            "label": "wobble"
+                        },
+                        {
+                            "value": "jello",
+                            "label": "jello"
+                        },
+                        {
+                            "value": "heartBeat",
+                            "label": "heartBeat"
+                        },
+                        {
+                            "value": "backInDown",
+                            "label": "backInDown"
+                        },
+                        {
+                            "value": "backInLeft",
+                            "label": "backInLeft"
+                        },
+                        {
+                            "value": "backInRight",
+                            "label": "backInRight"
+                        },
+                        {
+                            "value": "backInUp",
+                            "label": "backInUp"
+                        },
+                        {
+                            "value": "backOutDown",
+                            "label": "backOutDown"
+                        },
+                        {
+                            "value": "backOutLeft",
+                            "label": "backOutLeft"
+                        },
+                        {
+                            "value": "backOutRight",
+                            "label": "backOutRight"
+                        },
+                        {
+                            "value": "backOutUp",
+                            "label": "backOutUp"
+                        },
+                        {
+                            "value": "bounceIn",
+                            "label": "bounceIn"
+                        },
+                        {
+                            "value": "bounceInDown",
+                            "label": "bounceInDown"
+                        },
+                        {
+                            "value": "bounceInLeft",
+                            "label": "bounceInLeft"
+                        },
+                        {
+                            "value": "bounceInRight",
+                            "label": "bounceInRight"
+                        },
+                        {
+                            "value": "bounceInUp",
+                            "label": "bounceInUp"
+                        },
+                        {
+                            "value": "bounceOut",
+                            "label": "bounceOut"
+                        },
+                        {
+                            "value": "bounceOutDown",
+                            "label": "bounceOutDown"
+                        },
+                        {
+                            "value": "bounceOutLeft",
+                            "label": "bounceOutLeft"
+                        },
+                        {
+                            "value": "bounceOutRight",
+                            "label": "bounceOutRight"
+                        },
+                        {
+                            "value": "bounceOutUp",
+                            "label": "bounceOutUp"
+                        },
+                        {
+                            "value": "fadeIn",
+                            "label": "fadeIn"
+                        },
+                        {
+                            "value": "fadeInDown",
+                            "label": "fadeInDown"
+                        },
+                        {
+                            "value": "fadeInDownBig",
+                            "label": "fadeInDownBig"
+                        },
+                        {
+                            "value": "fadeInLeft",
+                            "label": "fadeInLeft"
+                        },
+                        {
+                            "value": "fadeInLeftBig",
+                            "label": "fadeInLeftBig"
+                        },
+                        {
+                            "value": "fadeInRight",
+                            "label": "fadeInRight"
+                        },
+                        {
+                            "value": "fadeInRightBig",
+                            "label": "fadeInRightBig"
+                        },
+                        {
+                            "value": "fadeInUp",
+                            "label": "fadeInUp"
+                        },
+                        {
+                            "value": "fadeInUpBig",
+                            "label": "fadeInUpBig"
+                        },
+                        {
+                            "value": "fadeInTopLeft",
+                            "label": "fadeInTopLeft"
+                        },
+                        {
+                            "value": "fadeInTopRight",
+                            "label": "fadeInTopRight"
+                        },
+                        {
+                            "value": "fadeInBottomLeft",
+                            "label": "fadeInBottomLeft"
+                        },
+                        {
+                            "value": "fadeInBottomRight",
+                            "label": "fadeInBottomRight"
+                        },
+                        {
+                            "value": "fadeOut",
+                            "label": "fadeOut"
+                        },
+                        {
+                            "value": "fadeOutDown",
+                            "label": "fadeOutDown"
+                        },
+                        {
+                            "value": "fadeOutDownBig",
+                            "label": "fadeOutDownBig"
+                        },
+                        {
+                            "value": "fadeOutLeft",
+                            "label": "fadeOutLeft"
+                        },
+                        {
+                            "value": "fadeOutLeftBig",
+                            "label": "fadeOutLeftBig"
+                        },
+                        {
+                            "value": "fadeOutRight",
+                            "label": "fadeOutRight"
+                        },
+                        {
+                            "value": "fadeOutRightBig",
+                            "label": "fadeOutRightBig"
+                        },
+                        {
+                            "value": "fadeOutUp",
+                            "label": "fadeOutUp"
+                        },
+                        {
+                            "value": "fadeOutUpBig",
+                            "label": "fadeOutUpBig"
+                        },
+                        {
+                            "value": "fadeOutTopLeft",
+                            "label": "fadeOutTopLeft"
+                        },
+                        {
+                            "value": "fadeOutTopRight",
+                            "label": "fadeOutTopRight"
+                        },
+                        {
+                            "value": "fadeOutBottomRight",
+                            "label": "fadeOutBottomRight"
+                        },
+                        {
+                            "value": "fadeOutBottomLeft",
+                            "label": "fadeOutBottomLeft"
+                        },
+                        {
+                            "value": "flip",
+                            "label": "flip"
+                        },
+                        {
+                            "value": "flipInX",
+                            "label": "flipInX"
+                        },
+                        {
+                            "value": "flipInY",
+                            "label": "flipInY"
+                        },
+                        {
+                            "value": "flipOutX",
+                            "label": "flipOutX"
+                        },
+                        {
+                            "value": "flipOutY",
+                            "label": "flipOutY"
+                        },
+                        {
+                            "value": "lightSpeedInRight",
+                            "label": "lightSpeedInRight"
+                        },
+                        {
+                            "value": "lightSpeedInLeft",
+                            "label": "lightSpeedInLeft"
+                        },
+                        {
+                            "value": "lightSpeedOutRight",
+                            "label": "lightSpeedOutRight"
+                        },
+                        {
+                            "value": "lightSpeedOutLeft",
+                            "label": "lightSpeedOutLeft"
+                        },
+                        {
+                            "value": "rotateIn",
+                            "label": "rotateIn"
+                        },
+                        {
+                            "value": "rotateInDownLeft",
+                            "label": "rotateInDownLeft"
+                        },
+                        {
+                            "value": "rotateInDownRight",
+                            "label": "rotateInDownRight"
+                        },
+                        {
+                            "value": "rotateInUpLeft",
+                            "label": "rotateInUpLeft"
+                        },
+                        {
+                            "value": "rotateInUpRight",
+                            "label": "rotateInUpRight"
+                        },
+                        {
+                            "value": "rotateOut",
+                            "label": "rotateOut"
+                        },
+                        {
+                            "value": "rotateOutDownLeft",
+                            "label": "rotateOutDownLeft"
+                        },
+                        {
+                            "value": "rotateOutDownRight",
+                            "label": "rotateOutDownRight"
+                        },
+                        {
+                            "value": "rotateOutUpLeft",
+                            "label": "rotateOutUpLeft"
+                        },
+                        {
+                            "value": "rotateOutUpRight",
+                            "label": "rotateOutUpRight"
+                        },
+                        {
+                            "value": "hinge",
+                            "label": "hinge"
+                        },
+                        {
+                            "value": "jackInTheBox",
+                            "label": "jackInTheBox"
+                        },
+                        {
+                            "value": "rollIn",
+                            "label": "rollIn"
+                        },
+                        {
+                            "value": "rollOut",
+                            "label": "rollOut"
+                        },
+                        {
+                            "value": "zoomIn",
+                            "label": "zoomIn"
+                        },
+                        {
+                            "value": "zoomInDown",
+                            "label": "zoomInDown"
+                        },
+                        {
+                            "value": "zoomInLeft",
+                            "label": "zoomInLeft"
+                        },
+                        {
+                            "value": "zoomInRight",
+                            "label": "zoomInRight"
+                        },
+                        {
+                            "value": "zoomInUp",
+                            "label": "zoomInUp"
+                        },
+                        {
+                            "value": "zoomOut",
+                            "label": "zoomOut"
+                        },
+                        {
+                            "value": "zoomOutDown",
+                            "label": "zoomOutDown"
+                        },
+                        {
+                            "value": "zoomOutLeft",
+                            "label": "zoomOutLeft"
+                        },
+                        {
+                            "value": "zoomOutRight",
+                            "label": "zoomOutRight"
+                        },
+                        {
+                            "value": "zoomOutUp",
+                            "label": "zoomOutUp"
+                        },
+                        {
+                            "value": "slideInDown",
+                            "label": "slideInDown"
+                        },
+                        {
+                            "value": "slideInLeft",
+                            "label": "slideInLeft"
+                        },
+                        {
+                            "value": "slideInRight",
+                            "label": "slideInRight"
+                        },
+                        {
+                            "value": "slideInUp",
+                            "label": "slideInUp"
+                        },
+                        {
+                            "value": "slideOutDown",
+                            "label": "slideOutDown"
+                        },
+                        {
+                            "value": "slideOutLeft",
+                            "label": "slideOutLeft"
+                        },
+                        {
+                            "value": "slideOutRight",
+                            "label": "slideOutRight"
+                        },
+                        {
+                            "value": "slideOutUp",
+                            "label": "slideOutUp"
+                        }
+                    ],
+                    "default": "fadeIn"
+                },
+                {
+                    "type": "select",
+                    "id": "subtitle_paralax_preset",
+                    "label": "subtitle paralax Preset",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "None"
+                        },
+                        {
+                            "value": "fadeIn",
+                            "label": "fadeIn"
+                        },
+                        {
+                            "value": "fadeOut",
+                            "label": "fadeOut"
+                        },
+                        {
+                            "value": "fadeInOut",
+                            "label": "fadeInOut"
+                        },
+                        {
+                            "value": "scaleIn",
+                            "label": "scaleIn"
+                        },
+                        {
+                            "value": "scaleOut",
+                            "label": "scaleOut"
+                        },
+                        {
+                            "value": "scaleInOut",
+                            "label": "scaleInOut"
+                        },
+                        {
+                            "value": "slideX",
+                            "label": "slideX"
+                        },
+                        {
+                            "value": "slideY",
+                            "label": "slideY"
+                        },
+                        {
+                            "value": "jiggle",
+                            "label": "jiggle"
+                        },
+                        {
+                            "value": "seesaw",
+                            "label": "seesaw"
+                        },
+                        {
+                            "value": "zigzag",
+                            "label": "zigzag"
+                        },
+                        {
+                            "value": "hueRotate",
+                            "label": "hueRotate"
+                        },
+                        {
+                            "value": "spin",
+                            "label": "spin"
+                        },
+                        {
+                            "value": "flipX",
+                            "label": "flipX"
+                        },
+                        {
+                            "value": "flipY",
+                            "label": "flipY"
+                        },
+                        {
+                            "value": "blurIn",
+                            "label": "blurIn"
+                        },
+                        {
+                            "value": "blurOut",
+                            "label": "blurOut"
+                        },
+                        {
+                            "value": "blurInOut",
+                            "label": "blurInOut"
+                        }
+                    ],
+                    "default": ""
+                },
+                {
+                    "type": "number",
+                    "id": "subtitle_paralax_distance",
+                    "label": "subtitle paralax Distance",
+                    "default": 20
+                },
+                {
+                    "type": "number",
+                    "id": "subtitle_paralax_strength",
+                    "label": "subtitle paralax Strength",
+                    "default": 20
+                },
+                {
+                    "type": "checkbox",
+                    "id": "description_use_animation",
+                    "label": "Use description Animation",
+                    "default": false
+                },
+                {
+                    "type": "select",
+                    "id": "description_animation_delay",
+                    "label": "description Animation Delay",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "1 second"
+                        },
+                        {
+                            "value": "2s",
+                            "label": "2 seconds"
+                        },
+                        {
+                            "value": "3s",
+                            "label": "3 seconds"
+                        },
+                        {
+                            "value": "4s",
+                            "label": "4 seconds"
+                        },
+                        {
+                            "value": "5s",
+                            "label": "5 seconds"
+                        }
+                    ],
+                    "default": ""
+                },
+                {
+                    "type": "select",
+                    "id": "description_animation_speed",
+                    "label": "description Animation Speed",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "Normal"
+                        },
+                        {
+                            "value": "slow",
+                            "label": "Slow"
+                        },
+                        {
+                            "value": "slower",
+                            "label": "Slower"
+                        },
+                        {
+                            "value": "fast",
+                            "label": "Fast"
+                        },
+                        {
+                            "value": "faster",
+                            "label": "Faster"
+                        }
+                    ],
+                    "default": ""
+                },
+                {
+                    "type": "select",
+                    "id": "description_animation_repeat",
+                    "label": "description Animation Repeat",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "None"
+                        },
+                        {
+                            "value": "repeat-1",
+                            "label": "Repeat Once"
+                        },
+                        {
+                            "value": "repeat-2",
+                            "label": "Repeat Twice"
+                        },
+                        {
+                            "value": "repeat-3",
+                            "label": "Repeat Three Times"
+                        },
+                        {
+                            "value": "infinite",
+                            "label": "Repeat Forever"
+                        }
+                    ],
+                    "default": ""
+                },
+                {
+                    "type": "select",
+                    "id": "description_animation",
+                    "label": "description Animation",
+                    "options": [
+                        {
+                            "value": "bounce",
+                            "label": "bounce"
+                        },
+                        {
+                            "value": "flash",
+                            "label": "flash"
+                        },
+                        {
+                            "value": "pulse",
+                            "label": "pulse"
+                        },
+                        {
+                            "value": "rubberBand",
+                            "label": "rubberBand"
+                        },
+                        {
+                            "value": "shakeX",
+                            "label": "shakeX"
+                        },
+                        {
+                            "value": "shakeY",
+                            "label": "shakeY"
+                        },
+                        {
+                            "value": "headShake",
+                            "label": "headShake"
+                        },
+                        {
+                            "value": "swing",
+                            "label": "swing"
+                        },
+                        {
+                            "value": "tada",
+                            "label": "tada"
+                        },
+                        {
+                            "value": "wobble",
+                            "label": "wobble"
+                        },
+                        {
+                            "value": "jello",
+                            "label": "jello"
+                        },
+                        {
+                            "value": "heartBeat",
+                            "label": "heartBeat"
+                        },
+                        {
+                            "value": "backInDown",
+                            "label": "backInDown"
+                        },
+                        {
+                            "value": "backInLeft",
+                            "label": "backInLeft"
+                        },
+                        {
+                            "value": "backInRight",
+                            "label": "backInRight"
+                        },
+                        {
+                            "value": "backInUp",
+                            "label": "backInUp"
+                        },
+                        {
+                            "value": "backOutDown",
+                            "label": "backOutDown"
+                        },
+                        {
+                            "value": "backOutLeft",
+                            "label": "backOutLeft"
+                        },
+                        {
+                            "value": "backOutRight",
+                            "label": "backOutRight"
+                        },
+                        {
+                            "value": "backOutUp",
+                            "label": "backOutUp"
+                        },
+                        {
+                            "value": "bounceIn",
+                            "label": "bounceIn"
+                        },
+                        {
+                            "value": "bounceInDown",
+                            "label": "bounceInDown"
+                        },
+                        {
+                            "value": "bounceInLeft",
+                            "label": "bounceInLeft"
+                        },
+                        {
+                            "value": "bounceInRight",
+                            "label": "bounceInRight"
+                        },
+                        {
+                            "value": "bounceInUp",
+                            "label": "bounceInUp"
+                        },
+                        {
+                            "value": "bounceOut",
+                            "label": "bounceOut"
+                        },
+                        {
+                            "value": "bounceOutDown",
+                            "label": "bounceOutDown"
+                        },
+                        {
+                            "value": "bounceOutLeft",
+                            "label": "bounceOutLeft"
+                        },
+                        {
+                            "value": "bounceOutRight",
+                            "label": "bounceOutRight"
+                        },
+                        {
+                            "value": "bounceOutUp",
+                            "label": "bounceOutUp"
+                        },
+                        {
+                            "value": "fadeIn",
+                            "label": "fadeIn"
+                        },
+                        {
+                            "value": "fadeInDown",
+                            "label": "fadeInDown"
+                        },
+                        {
+                            "value": "fadeInDownBig",
+                            "label": "fadeInDownBig"
+                        },
+                        {
+                            "value": "fadeInLeft",
+                            "label": "fadeInLeft"
+                        },
+                        {
+                            "value": "fadeInLeftBig",
+                            "label": "fadeInLeftBig"
+                        },
+                        {
+                            "value": "fadeInRight",
+                            "label": "fadeInRight"
+                        },
+                        {
+                            "value": "fadeInRightBig",
+                            "label": "fadeInRightBig"
+                        },
+                        {
+                            "value": "fadeInUp",
+                            "label": "fadeInUp"
+                        },
+                        {
+                            "value": "fadeInUpBig",
+                            "label": "fadeInUpBig"
+                        },
+                        {
+                            "value": "fadeInTopLeft",
+                            "label": "fadeInTopLeft"
+                        },
+                        {
+                            "value": "fadeInTopRight",
+                            "label": "fadeInTopRight"
+                        },
+                        {
+                            "value": "fadeInBottomLeft",
+                            "label": "fadeInBottomLeft"
+                        },
+                        {
+                            "value": "fadeInBottomRight",
+                            "label": "fadeInBottomRight"
+                        },
+                        {
+                            "value": "fadeOut",
+                            "label": "fadeOut"
+                        },
+                        {
+                            "value": "fadeOutDown",
+                            "label": "fadeOutDown"
+                        },
+                        {
+                            "value": "fadeOutDownBig",
+                            "label": "fadeOutDownBig"
+                        },
+                        {
+                            "value": "fadeOutLeft",
+                            "label": "fadeOutLeft"
+                        },
+                        {
+                            "value": "fadeOutLeftBig",
+                            "label": "fadeOutLeftBig"
+                        },
+                        {
+                            "value": "fadeOutRight",
+                            "label": "fadeOutRight"
+                        },
+                        {
+                            "value": "fadeOutRightBig",
+                            "label": "fadeOutRightBig"
+                        },
+                        {
+                            "value": "fadeOutUp",
+                            "label": "fadeOutUp"
+                        },
+                        {
+                            "value": "fadeOutUpBig",
+                            "label": "fadeOutUpBig"
+                        },
+                        {
+                            "value": "fadeOutTopLeft",
+                            "label": "fadeOutTopLeft"
+                        },
+                        {
+                            "value": "fadeOutTopRight",
+                            "label": "fadeOutTopRight"
+                        },
+                        {
+                            "value": "fadeOutBottomRight",
+                            "label": "fadeOutBottomRight"
+                        },
+                        {
+                            "value": "fadeOutBottomLeft",
+                            "label": "fadeOutBottomLeft"
+                        },
+                        {
+                            "value": "flip",
+                            "label": "flip"
+                        },
+                        {
+                            "value": "flipInX",
+                            "label": "flipInX"
+                        },
+                        {
+                            "value": "flipInY",
+                            "label": "flipInY"
+                        },
+                        {
+                            "value": "flipOutX",
+                            "label": "flipOutX"
+                        },
+                        {
+                            "value": "flipOutY",
+                            "label": "flipOutY"
+                        },
+                        {
+                            "value": "lightSpeedInRight",
+                            "label": "lightSpeedInRight"
+                        },
+                        {
+                            "value": "lightSpeedInLeft",
+                            "label": "lightSpeedInLeft"
+                        },
+                        {
+                            "value": "lightSpeedOutRight",
+                            "label": "lightSpeedOutRight"
+                        },
+                        {
+                            "value": "lightSpeedOutLeft",
+                            "label": "lightSpeedOutLeft"
+                        },
+                        {
+                            "value": "rotateIn",
+                            "label": "rotateIn"
+                        },
+                        {
+                            "value": "rotateInDownLeft",
+                            "label": "rotateInDownLeft"
+                        },
+                        {
+                            "value": "rotateInDownRight",
+                            "label": "rotateInDownRight"
+                        },
+                        {
+                            "value": "rotateInUpLeft",
+                            "label": "rotateInUpLeft"
+                        },
+                        {
+                            "value": "rotateInUpRight",
+                            "label": "rotateInUpRight"
+                        },
+                        {
+                            "value": "rotateOut",
+                            "label": "rotateOut"
+                        },
+                        {
+                            "value": "rotateOutDownLeft",
+                            "label": "rotateOutDownLeft"
+                        },
+                        {
+                            "value": "rotateOutDownRight",
+                            "label": "rotateOutDownRight"
+                        },
+                        {
+                            "value": "rotateOutUpLeft",
+                            "label": "rotateOutUpLeft"
+                        },
+                        {
+                            "value": "rotateOutUpRight",
+                            "label": "rotateOutUpRight"
+                        },
+                        {
+                            "value": "hinge",
+                            "label": "hinge"
+                        },
+                        {
+                            "value": "jackInTheBox",
+                            "label": "jackInTheBox"
+                        },
+                        {
+                            "value": "rollIn",
+                            "label": "rollIn"
+                        },
+                        {
+                            "value": "rollOut",
+                            "label": "rollOut"
+                        },
+                        {
+                            "value": "zoomIn",
+                            "label": "zoomIn"
+                        },
+                        {
+                            "value": "zoomInDown",
+                            "label": "zoomInDown"
+                        },
+                        {
+                            "value": "zoomInLeft",
+                            "label": "zoomInLeft"
+                        },
+                        {
+                            "value": "zoomInRight",
+                            "label": "zoomInRight"
+                        },
+                        {
+                            "value": "zoomInUp",
+                            "label": "zoomInUp"
+                        },
+                        {
+                            "value": "zoomOut",
+                            "label": "zoomOut"
+                        },
+                        {
+                            "value": "zoomOutDown",
+                            "label": "zoomOutDown"
+                        },
+                        {
+                            "value": "zoomOutLeft",
+                            "label": "zoomOutLeft"
+                        },
+                        {
+                            "value": "zoomOutRight",
+                            "label": "zoomOutRight"
+                        },
+                        {
+                            "value": "zoomOutUp",
+                            "label": "zoomOutUp"
+                        },
+                        {
+                            "value": "slideInDown",
+                            "label": "slideInDown"
+                        },
+                        {
+                            "value": "slideInLeft",
+                            "label": "slideInLeft"
+                        },
+                        {
+                            "value": "slideInRight",
+                            "label": "slideInRight"
+                        },
+                        {
+                            "value": "slideInUp",
+                            "label": "slideInUp"
+                        },
+                        {
+                            "value": "slideOutDown",
+                            "label": "slideOutDown"
+                        },
+                        {
+                            "value": "slideOutLeft",
+                            "label": "slideOutLeft"
+                        },
+                        {
+                            "value": "slideOutRight",
+                            "label": "slideOutRight"
+                        },
+                        {
+                            "value": "slideOutUp",
+                            "label": "slideOutUp"
+                        }
+                    ],
+                    "default": "fadeIn"
+                },
+                {
+                    "type": "select",
+                    "id": "description_paralax_preset",
+                    "label": "description paralax Preset",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "None"
+                        },
+                        {
+                            "value": "fadeIn",
+                            "label": "fadeIn"
+                        },
+                        {
+                            "value": "fadeOut",
+                            "label": "fadeOut"
+                        },
+                        {
+                            "value": "fadeInOut",
+                            "label": "fadeInOut"
+                        },
+                        {
+                            "value": "scaleIn",
+                            "label": "scaleIn"
+                        },
+                        {
+                            "value": "scaleOut",
+                            "label": "scaleOut"
+                        },
+                        {
+                            "value": "scaleInOut",
+                            "label": "scaleInOut"
+                        },
+                        {
+                            "value": "slideX",
+                            "label": "slideX"
+                        },
+                        {
+                            "value": "slideY",
+                            "label": "slideY"
+                        },
+                        {
+                            "value": "jiggle",
+                            "label": "jiggle"
+                        },
+                        {
+                            "value": "seesaw",
+                            "label": "seesaw"
+                        },
+                        {
+                            "value": "zigzag",
+                            "label": "zigzag"
+                        },
+                        {
+                            "value": "hueRotate",
+                            "label": "hueRotate"
+                        },
+                        {
+                            "value": "spin",
+                            "label": "spin"
+                        },
+                        {
+                            "value": "flipX",
+                            "label": "flipX"
+                        },
+                        {
+                            "value": "flipY",
+                            "label": "flipY"
+                        },
+                        {
+                            "value": "blurIn",
+                            "label": "blurIn"
+                        },
+                        {
+                            "value": "blurOut",
+                            "label": "blurOut"
+                        },
+                        {
+                            "value": "blurInOut",
+                            "label": "blurInOut"
+                        }
+                    ],
+                    "default": ""
+                },
+                {
+                    "type": "number",
+                    "id": "description_paralax_distance",
+                    "label": "description paralax Distance",
+                    "default": 20
+                },
+                {
+                    "type": "number",
+                    "id": "description_paralax_strength",
+                    "label": "description paralax Strength",
+                    "default": 20
+                },
+                {
+                    "type": "checkbox",
+                    "id": "button_use_animation",
+                    "label": "Use button Animation",
+                    "default": false
+                },
+                {
+                    "type": "select",
+                    "id": "button_animation_delay",
+                    "label": "button Animation Delay",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "1 second"
+                        },
+                        {
+                            "value": "2s",
+                            "label": "2 seconds"
+                        },
+                        {
+                            "value": "3s",
+                            "label": "3 seconds"
+                        },
+                        {
+                            "value": "4s",
+                            "label": "4 seconds"
+                        },
+                        {
+                            "value": "5s",
+                            "label": "5 seconds"
+                        }
+                    ],
+                    "default": ""
+                },
+                {
+                    "type": "select",
+                    "id": "button_animation_speed",
+                    "label": "button Animation Speed",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "Normal"
+                        },
+                        {
+                            "value": "slow",
+                            "label": "Slow"
+                        },
+                        {
+                            "value": "slower",
+                            "label": "Slower"
+                        },
+                        {
+                            "value": "fast",
+                            "label": "Fast"
+                        },
+                        {
+                            "value": "faster",
+                            "label": "Faster"
+                        }
+                    ],
+                    "default": ""
+                },
+                {
+                    "type": "select",
+                    "id": "button_animation_repeat",
+                    "label": "button Animation Repeat",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "None"
+                        },
+                        {
+                            "value": "repeat-1",
+                            "label": "Repeat Once"
+                        },
+                        {
+                            "value": "repeat-2",
+                            "label": "Repeat Twice"
+                        },
+                        {
+                            "value": "repeat-3",
+                            "label": "Repeat Three Times"
+                        },
+                        {
+                            "value": "infinite",
+                            "label": "Repeat Forever"
+                        }
+                    ],
+                    "default": ""
+                },
+                {
+                    "type": "select",
+                    "id": "button_animation",
+                    "label": "button Animation",
+                    "options": [
+                        {
+                            "value": "bounce",
+                            "label": "bounce"
+                        },
+                        {
+                            "value": "flash",
+                            "label": "flash"
+                        },
+                        {
+                            "value": "pulse",
+                            "label": "pulse"
+                        },
+                        {
+                            "value": "rubberBand",
+                            "label": "rubberBand"
+                        },
+                        {
+                            "value": "shakeX",
+                            "label": "shakeX"
+                        },
+                        {
+                            "value": "shakeY",
+                            "label": "shakeY"
+                        },
+                        {
+                            "value": "headShake",
+                            "label": "headShake"
+                        },
+                        {
+                            "value": "swing",
+                            "label": "swing"
+                        },
+                        {
+                            "value": "tada",
+                            "label": "tada"
+                        },
+                        {
+                            "value": "wobble",
+                            "label": "wobble"
+                        },
+                        {
+                            "value": "jello",
+                            "label": "jello"
+                        },
+                        {
+                            "value": "heartBeat",
+                            "label": "heartBeat"
+                        },
+                        {
+                            "value": "backInDown",
+                            "label": "backInDown"
+                        },
+                        {
+                            "value": "backInLeft",
+                            "label": "backInLeft"
+                        },
+                        {
+                            "value": "backInRight",
+                            "label": "backInRight"
+                        },
+                        {
+                            "value": "backInUp",
+                            "label": "backInUp"
+                        },
+                        {
+                            "value": "backOutDown",
+                            "label": "backOutDown"
+                        },
+                        {
+                            "value": "backOutLeft",
+                            "label": "backOutLeft"
+                        },
+                        {
+                            "value": "backOutRight",
+                            "label": "backOutRight"
+                        },
+                        {
+                            "value": "backOutUp",
+                            "label": "backOutUp"
+                        },
+                        {
+                            "value": "bounceIn",
+                            "label": "bounceIn"
+                        },
+                        {
+                            "value": "bounceInDown",
+                            "label": "bounceInDown"
+                        },
+                        {
+                            "value": "bounceInLeft",
+                            "label": "bounceInLeft"
+                        },
+                        {
+                            "value": "bounceInRight",
+                            "label": "bounceInRight"
+                        },
+                        {
+                            "value": "bounceInUp",
+                            "label": "bounceInUp"
+                        },
+                        {
+                            "value": "bounceOut",
+                            "label": "bounceOut"
+                        },
+                        {
+                            "value": "bounceOutDown",
+                            "label": "bounceOutDown"
+                        },
+                        {
+                            "value": "bounceOutLeft",
+                            "label": "bounceOutLeft"
+                        },
+                        {
+                            "value": "bounceOutRight",
+                            "label": "bounceOutRight"
+                        },
+                        {
+                            "value": "bounceOutUp",
+                            "label": "bounceOutUp"
+                        },
+                        {
+                            "value": "fadeIn",
+                            "label": "fadeIn"
+                        },
+                        {
+                            "value": "fadeInDown",
+                            "label": "fadeInDown"
+                        },
+                        {
+                            "value": "fadeInDownBig",
+                            "label": "fadeInDownBig"
+                        },
+                        {
+                            "value": "fadeInLeft",
+                            "label": "fadeInLeft"
+                        },
+                        {
+                            "value": "fadeInLeftBig",
+                            "label": "fadeInLeftBig"
+                        },
+                        {
+                            "value": "fadeInRight",
+                            "label": "fadeInRight"
+                        },
+                        {
+                            "value": "fadeInRightBig",
+                            "label": "fadeInRightBig"
+                        },
+                        {
+                            "value": "fadeInUp",
+                            "label": "fadeInUp"
+                        },
+                        {
+                            "value": "fadeInUpBig",
+                            "label": "fadeInUpBig"
+                        },
+                        {
+                            "value": "fadeInTopLeft",
+                            "label": "fadeInTopLeft"
+                        },
+                        {
+                            "value": "fadeInTopRight",
+                            "label": "fadeInTopRight"
+                        },
+                        {
+                            "value": "fadeInBottomLeft",
+                            "label": "fadeInBottomLeft"
+                        },
+                        {
+                            "value": "fadeInBottomRight",
+                            "label": "fadeInBottomRight"
+                        },
+                        {
+                            "value": "fadeOut",
+                            "label": "fadeOut"
+                        },
+                        {
+                            "value": "fadeOutDown",
+                            "label": "fadeOutDown"
+                        },
+                        {
+                            "value": "fadeOutDownBig",
+                            "label": "fadeOutDownBig"
+                        },
+                        {
+                            "value": "fadeOutLeft",
+                            "label": "fadeOutLeft"
+                        },
+                        {
+                            "value": "fadeOutLeftBig",
+                            "label": "fadeOutLeftBig"
+                        },
+                        {
+                            "value": "fadeOutRight",
+                            "label": "fadeOutRight"
+                        },
+                        {
+                            "value": "fadeOutRightBig",
+                            "label": "fadeOutRightBig"
+                        },
+                        {
+                            "value": "fadeOutUp",
+                            "label": "fadeOutUp"
+                        },
+                        {
+                            "value": "fadeOutUpBig",
+                            "label": "fadeOutUpBig"
+                        },
+                        {
+                            "value": "fadeOutTopLeft",
+                            "label": "fadeOutTopLeft"
+                        },
+                        {
+                            "value": "fadeOutTopRight",
+                            "label": "fadeOutTopRight"
+                        },
+                        {
+                            "value": "fadeOutBottomRight",
+                            "label": "fadeOutBottomRight"
+                        },
+                        {
+                            "value": "fadeOutBottomLeft",
+                            "label": "fadeOutBottomLeft"
+                        },
+                        {
+                            "value": "flip",
+                            "label": "flip"
+                        },
+                        {
+                            "value": "flipInX",
+                            "label": "flipInX"
+                        },
+                        {
+                            "value": "flipInY",
+                            "label": "flipInY"
+                        },
+                        {
+                            "value": "flipOutX",
+                            "label": "flipOutX"
+                        },
+                        {
+                            "value": "flipOutY",
+                            "label": "flipOutY"
+                        },
+                        {
+                            "value": "lightSpeedInRight",
+                            "label": "lightSpeedInRight"
+                        },
+                        {
+                            "value": "lightSpeedInLeft",
+                            "label": "lightSpeedInLeft"
+                        },
+                        {
+                            "value": "lightSpeedOutRight",
+                            "label": "lightSpeedOutRight"
+                        },
+                        {
+                            "value": "lightSpeedOutLeft",
+                            "label": "lightSpeedOutLeft"
+                        },
+                        {
+                            "value": "rotateIn",
+                            "label": "rotateIn"
+                        },
+                        {
+                            "value": "rotateInDownLeft",
+                            "label": "rotateInDownLeft"
+                        },
+                        {
+                            "value": "rotateInDownRight",
+                            "label": "rotateInDownRight"
+                        },
+                        {
+                            "value": "rotateInUpLeft",
+                            "label": "rotateInUpLeft"
+                        },
+                        {
+                            "value": "rotateInUpRight",
+                            "label": "rotateInUpRight"
+                        },
+                        {
+                            "value": "rotateOut",
+                            "label": "rotateOut"
+                        },
+                        {
+                            "value": "rotateOutDownLeft",
+                            "label": "rotateOutDownLeft"
+                        },
+                        {
+                            "value": "rotateOutDownRight",
+                            "label": "rotateOutDownRight"
+                        },
+                        {
+                            "value": "rotateOutUpLeft",
+                            "label": "rotateOutUpLeft"
+                        },
+                        {
+                            "value": "rotateOutUpRight",
+                            "label": "rotateOutUpRight"
+                        },
+                        {
+                            "value": "hinge",
+                            "label": "hinge"
+                        },
+                        {
+                            "value": "jackInTheBox",
+                            "label": "jackInTheBox"
+                        },
+                        {
+                            "value": "rollIn",
+                            "label": "rollIn"
+                        },
+                        {
+                            "value": "rollOut",
+                            "label": "rollOut"
+                        },
+                        {
+                            "value": "zoomIn",
+                            "label": "zoomIn"
+                        },
+                        {
+                            "value": "zoomInDown",
+                            "label": "zoomInDown"
+                        },
+                        {
+                            "value": "zoomInLeft",
+                            "label": "zoomInLeft"
+                        },
+                        {
+                            "value": "zoomInRight",
+                            "label": "zoomInRight"
+                        },
+                        {
+                            "value": "zoomInUp",
+                            "label": "zoomInUp"
+                        },
+                        {
+                            "value": "zoomOut",
+                            "label": "zoomOut"
+                        },
+                        {
+                            "value": "zoomOutDown",
+                            "label": "zoomOutDown"
+                        },
+                        {
+                            "value": "zoomOutLeft",
+                            "label": "zoomOutLeft"
+                        },
+                        {
+                            "value": "zoomOutRight",
+                            "label": "zoomOutRight"
+                        },
+                        {
+                            "value": "zoomOutUp",
+                            "label": "zoomOutUp"
+                        },
+                        {
+                            "value": "slideInDown",
+                            "label": "slideInDown"
+                        },
+                        {
+                            "value": "slideInLeft",
+                            "label": "slideInLeft"
+                        },
+                        {
+                            "value": "slideInRight",
+                            "label": "slideInRight"
+                        },
+                        {
+                            "value": "slideInUp",
+                            "label": "slideInUp"
+                        },
+                        {
+                            "value": "slideOutDown",
+                            "label": "slideOutDown"
+                        },
+                        {
+                            "value": "slideOutLeft",
+                            "label": "slideOutLeft"
+                        },
+                        {
+                            "value": "slideOutRight",
+                            "label": "slideOutRight"
+                        },
+                        {
+                            "value": "slideOutUp",
+                            "label": "slideOutUp"
+                        }
+                    ],
+                    "default": "fadeIn"
+                },
+                {
+                    "type": "select",
+                    "id": "button_paralax_preset",
+                    "label": "button paralax Preset",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "None"
+                        },
+                        {
+                            "value": "fadeIn",
+                            "label": "fadeIn"
+                        },
+                        {
+                            "value": "fadeOut",
+                            "label": "fadeOut"
+                        },
+                        {
+                            "value": "fadeInOut",
+                            "label": "fadeInOut"
+                        },
+                        {
+                            "value": "scaleIn",
+                            "label": "scaleIn"
+                        },
+                        {
+                            "value": "scaleOut",
+                            "label": "scaleOut"
+                        },
+                        {
+                            "value": "scaleInOut",
+                            "label": "scaleInOut"
+                        },
+                        {
+                            "value": "slideX",
+                            "label": "slideX"
+                        },
+                        {
+                            "value": "slideY",
+                            "label": "slideY"
+                        },
+                        {
+                            "value": "jiggle",
+                            "label": "jiggle"
+                        },
+                        {
+                            "value": "seesaw",
+                            "label": "seesaw"
+                        },
+                        {
+                            "value": "zigzag",
+                            "label": "zigzag"
+                        },
+                        {
+                            "value": "hueRotate",
+                            "label": "hueRotate"
+                        },
+                        {
+                            "value": "spin",
+                            "label": "spin"
+                        },
+                        {
+                            "value": "flipX",
+                            "label": "flipX"
+                        },
+                        {
+                            "value": "flipY",
+                            "label": "flipY"
+                        },
+                        {
+                            "value": "blurIn",
+                            "label": "blurIn"
+                        },
+                        {
+                            "value": "blurOut",
+                            "label": "blurOut"
+                        },
+                        {
+                            "value": "blurInOut",
+                            "label": "blurInOut"
+                        }
+                    ],
+                    "default": ""
+                },
+                {
+                    "type": "number",
+                    "id": "button_paralax_distance",
+                    "label": "button paralax Distance",
+                    "default": 20
+                },
+                {
+                    "type": "number",
+                    "id": "button_paralax_strength",
+                    "label": "button paralax Strength",
+                    "default": 20
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Ultimate Component",
+            "blocks": [
+                {
+                    "type": "component"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
