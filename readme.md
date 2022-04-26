@@ -5,6 +5,8 @@ Shopify Ultimate Component is an all in one shopify liquid section that can be d
 into your thems code and provide a wide variety of customizer options to help you 
 quickly build beautifully looking single page layouts.
 
+See it in use at [WAMCoffee.com](https://wamcoffee.com)
+
 ## Features
 
 - Easy to install, copy code into the web based shopify code editor for your theme.
