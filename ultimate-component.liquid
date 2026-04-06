@@ -1,16 +1,16 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-<div class="ultimate-component-container {{ section.settings.class_name | defaut: ""}}" style="position:relative;">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha384-Gu3KVV2H9d+yA4QDpVB7VcOyhJlAVrcXd0thEjr4KznfaFPLe0xQJyonVxONa4ZC" crossorigin="anonymous" />
+<div class="ultimate-component-container {{ section.settings.class_name | default: "" | escape }}" style="position:relative;">
   <div class="ultimate-component-block"> 
     {% if section.blocks.size > 0 %}
     <div class="ultimate-compnent-item-{{ section.id }} ultimate-component-wrapper"> 
       {% for block in section.blocks %}
       <div class="ultimate-component-block" {{ block.shopify_attributes }}>
         {% if block.settings.top_edge_image != blank %}
-        <div style="top:0;z-index:5;height: {{ block.settings.top_edge_height | default: '10vh' }} !important;" class="ultimate-component-edges-container">
+        <div style="top:0;z-index:5;height: {{ block.settings.top_edge_height | default: '10vh' | escape }} !important;" class="ultimate-component-edges-container">
           <img class="ultimate-component-cover lazyload" {% if section.settings.lazyload %}data-{% endif %}src=" {{ block.settings.top_edge_image | img_url: 'master' }}" alt="Ultimate Component Top Edge" />
         </div> 
         {% endif %}
-        <a href="{{ block.settings.link }}" class="ultimate-component-hyperlink same-height">
+        <a href="{{ block.settings.link | escape }}" class="ultimate-component-hyperlink same-height">
           <div class="ultimate-component-link"> 
             {% if block.settings.video_url != blank %}
             {% if block.settings.video_fallback_image != blank %} 
@@ -27,7 +27,7 @@
             width="100%" 
             style="z-index:0;"
             class="ultimate-component-cover lazyload">
-              <source {% if section.settings.lazyload %}data-{% endif %}src="{{ block.settings.video_url }}" type="video/mp4" />
+              <source {% if section.settings.lazyload %}data-{% endif %}src="{{ block.settings.video_url | escape }}" type="video/mp4" />
             </video> 
             {% endif %}
             {% if block.settings.image != blank %} 
@@ -41,27 +41,27 @@
             alt="Ultimate Component Background Mobile Image" /> 
             {% endif %} 
             {% if block.settings.background_overlay != blank %}
-            <div style="z-index:2;width:100%;height:100%;top:0;left:0;position:absolute;background:{{ block.settings.background_overlay }};"></div> {% endif %}
-            {% if block.settings.image_overlay != blank %} 
+            <div style="z-index:2;width:100%;height:100%;top:0;left:0;position:absolute;background:{{ block.settings.background_overlay | escape }};"></div> {% endif %}
+            {% if block.settings.image_overlay != blank %}
             <img style="z-index:3;" class="ultimate-component-cover ultimate-component-image-overlay
               {% if block.settings.image_overlay_use_animation and block.settings.image_overlay_animation != blank  %}
                 animate__animated
-                animate__{{ block.settings.image_overlay_animation }}
+                animate__{{ block.settings.image_overlay_animation | escape }}
                 {% if block.settings.image_overlay_animation_delay != blank %}
-                  animate__delay-{{block.settings.image_overlay_animation_delay}}
+                  animate__delay-{{block.settings.image_overlay_animation_delay | escape }}
                 {% endif %}
                 {% if block.settings.image_overlay_animation_speed != blank %}
-                  animate__{{block.settings.image_overlay_animation_speed}}
+                  animate__{{block.settings.image_overlay_animation_speed | escape }}
                 {% endif %}
                 {% if block.settings.image_overlay_animation_repeat != blank %}
-                  animate__{{block.settings.image_overlay_animation_repeat}}
+                  animate__{{block.settings.image_overlay_animation_repeat | escape }}
                 {% endif %}
               {% endif %}
 
               {% if block.settings.paralax_driver != blank and block.settings.image_overlay_paralax_preset != blank %}
-                lax  
-                ultimate-component-animate-{{block.settings.paralax_driver}}
-                lax_preset_{{block.settings.image_overlay_paralax_preset}}{% if block.settings.image_overlay_paralax_distance != blank and block.settings.image_overlay_paralax_strength  %}:{{block.settings.image_overlay_paralax_distance}}:{{block.settings.image_overlay_paralax_strength}}{% endif %}
+                lax
+                ultimate-component-animate-{{block.settings.paralax_driver | escape }}
+                lax_preset_{{block.settings.image_overlay_paralax_preset | escape }}{% if block.settings.image_overlay_paralax_distance != blank and block.settings.image_overlay_paralax_strength  %}:{{block.settings.image_overlay_paralax_distance | escape }}:{{block.settings.image_overlay_paralax_strength | escape }}{% endif %}
               {% endif %}
                lazyload" {% if section.settings.lazyload %}data-{% endif %}src=" {{ block.settings.image_overlay | img_url: 'master' }}" alt="Ultimate Component Image Overlay" /> 
             {% endif %}
@@ -74,14 +74,14 @@
             or block.settings.button_label != blank %}
             <div class="ultimate-component-page-width" style="
                 z-index: 4;
-                padding-top: {{ block.settings.padding_top | default: '0px' }};
-                padding-left: {{ block.settings.padding_left | default: '0px' }};
-                padding-bottom: {{ block.settings.padding_bottom | default: '0px' }};
-                padding-right: {{ block.settings.padding_right | default: '0px' }};
+                padding-top: {{ block.settings.padding_top | default: '0px' | escape }};
+                padding-left: {{ block.settings.padding_left | default: '0px' | escape }};
+                padding-bottom: {{ block.settings.padding_bottom | default: '0px' | escape }};
+                padding-right: {{ block.settings.padding_right | default: '0px' | escape }};
               ">
-              <div class="ultimate-component-content ultimate-component-content-{{block.settings.text_position}} ultimate-component-mobile-content-{{block.settings.mobile_text_position}} ultimate-component-content-{{block.settings.layout}} ultimate-component-text-alignment-{{ block.settings.textalignment }}  ultimate-component-mobile-text-alignment-{{ block.settings.mobile_textalignment }}"
+              <div class="ultimate-component-content ultimate-component-content-{{block.settings.text_position | escape }} ultimate-component-mobile-content-{{block.settings.mobile_text_position | escape }} ultimate-component-content-{{block.settings.layout | escape }} ultimate-component-text-alignment-{{ block.settings.textalignment | escape }}  ultimate-component-mobile-text-alignment-{{ block.settings.mobile_textalignment | escape }}"
                 style="{% if block.settings.max_width != empty %}
-                  width: {{ block.settings.max_width }};
+                  width: {{ block.settings.max_width | escape }};
                   {% endif %}
                 "> 
                 {% if block.settings.subtitle != blank %}
@@ -89,165 +89,165 @@
                   ultimate-container-sub-title
                   
                   {% if block.settings.subtitle_css_classes != blank %}
-                    {{ block.settings.subtitle_css_classes }}
+                    {{ block.settings.subtitle_css_classes | escape }}
                   {% endif %}
                   {% if block.settings.subtitle_use_animation and block.settings.subtitle_animation != blank  %}
                     animate__animated
-                    animate__{{ block.settings.subtitle_animation }}
+                    animate__{{ block.settings.subtitle_animation | escape }}
                     {% if block.settings.subtitle_animation_delay != blank %}
-                      animate__delay-{{block.settings.subtitle_animation_delay}}
+                      animate__delay-{{block.settings.subtitle_animation_delay | escape }}
                     {% endif %}
                     {% if block.settings.subtitle_animation_speed != blank %}
-                      animate__{{block.settings.subtitle_animation_speed}}
+                      animate__{{block.settings.subtitle_animation_speed | escape }}
                     {% endif %}
                     {% if block.settings.subtitle_animation_repeat != blank %}
-                      animate__{{block.settings.subtitle_animation_repeat}}
+                      animate__{{block.settings.subtitle_animation_repeat | escape }}
                     {% endif %}
                   {% endif %}
 
                   {% if block.settings.paralax_driver != blank and block.settings.subtitle_paralax_preset != blank %}
-                    lax  
-                    ultimate-component-animate-{{block.settings.paralax_driver}}
-                    lax_preset_{{block.settings.subtitle_paralax_preset}}{% if block.settings.subtitle_paralax_distance != blank and block.settings.subtitle_paralax_strength  %}:{{block.settings.subtitle_paralax_distance}}:{{block.settings.subtitle_paralax_strength}}{% endif %}
+                    lax
+                    ultimate-component-animate-{{block.settings.paralax_driver | escape }}
+                    lax_preset_{{block.settings.subtitle_paralax_preset | escape }}{% if block.settings.subtitle_paralax_distance != blank and block.settings.subtitle_paralax_strength  %}:{{block.settings.subtitle_paralax_distance | escape }}:{{block.settings.subtitle_paralax_strength | escape }}{% endif %}
                   {% endif %}
-                " style="color:{{ block.settings.subtitlecolor }}"> {{ block.settings.subtitle }}</div> 
+                " style="color:{{ block.settings.subtitlecolor | escape }}"> {{ block.settings.subtitle }}</div>
                 {% else %}
                 <div class="
                   ultimate-container-sub-title
-                  
+
                   {% if block.settings.subtitle_css_classes != blank %}
-                    {{ block.settings.subtitle_css_classes }}
+                    {{ block.settings.subtitle_css_classes | escape }}
                   {% endif %}
                   {% if block.settings.subtitle_use_animation and block.settings.subtitle_animation != blank  %}
                     animate__animated
-                    animate__{{ block.settings.subtitle_animation }}
+                    animate__{{ block.settings.subtitle_animation | escape }}
                     {% if block.settings.subtitle_animation_delay != blank %}
-                      animate__delay-{{block.settings.subtitle_animation_delay}}
+                      animate__delay-{{block.settings.subtitle_animation_delay | escape }}
                     {% endif %}
                     {% if block.settings.subtitle_animation_speed != blank %}
-                      animate__{{block.settings.subtitle_animation_speed}}
+                      animate__{{block.settings.subtitle_animation_speed | escape }}
                     {% endif %}
                     {% if block.settings.subtitle_animation_repeat != blank %}
-                      animate__{{block.settings.subtitle_animation_repeat}}
+                      animate__{{block.settings.subtitle_animation_repeat | escape }}
                     {% endif %}
                   {% endif %}
 
                   {% if block.settings.paralax_driver != blank and block.settings.subtitle_paralax_preset != blank %}
-                    lax  
-                    ultimate-component-animate-{{block.settings.paralax_driver}}
-                    lax_preset_{{block.settings.subtitle_paralax_preset}}{% if block.settings.subtitle_paralax_distance != blank and block.settings.subtitle_paralax_strength  %}:{{block.settings.subtitle_paralax_distance}}:{{block.settings.subtitle_paralax_strength}}{% endif %}
+                    lax
+                    ultimate-component-animate-{{block.settings.paralax_driver | escape }}
+                    lax_preset_{{block.settings.subtitle_paralax_preset | escape }}{% if block.settings.subtitle_paralax_distance != blank and block.settings.subtitle_paralax_strength  %}:{{block.settings.subtitle_paralax_distance | escape }}:{{block.settings.subtitle_paralax_strength | escape }}{% endif %}
                   {% endif %}
-                " style="color:{{ block.settings.subtitlecolor }}"> {{ block.settings.subtitle_html }}</div>
+                " style="color:{{ block.settings.subtitlecolor | escape }}"> {{ block.settings.subtitle_html }}</div>
                 {% endif %}
                 {% if block.settings.maintitle != blank %}
                 <div class="
                   ultimate-component-main-title
                   
                   {% if block.settings.maintitle_css_classes != blank %}
-                    {{ block.settings.maintitle_css_classes }}
+                    {{ block.settings.maintitle_css_classes | escape }}
                   {% endif %}
                   {% if block.settings.heading_use_animation and block.settings.heading_animation != blank  %}
                     animate__animated
-                    animate__{{ block.settings.heading_animation }}
+                    animate__{{ block.settings.heading_animation | escape }}
                     {% if block.settings.heading_animation_delay != blank %}
-                      animate__delay-{{block.settings.heading_animation_delay}}
+                      animate__delay-{{block.settings.heading_animation_delay | escape }}
                     {% endif %}
                     {% if block.settings.heading_animation_speed != blank %}
-                      animate__{{block.settings.heading_animation_speed}}
+                      animate__{{block.settings.heading_animation_speed | escape }}
                     {% endif %}
                     {% if block.settings.heading_animation_repeat != blank %}
-                      animate__{{block.settings.heading_animation_repeat}}
+                      animate__{{block.settings.heading_animation_repeat | escape }}
                     {% endif %}
                   {% endif %}
 
                   {% if block.settings.paralax_driver != blank and block.settings.heading_paralax_preset != blank %}
-                    lax  
-                    ultimate-component-animate-{{block.settings.paralax_driver}}
-                    lax_preset_{{block.settings.heading_paralax_preset}}{% if block.settings.heading_paralax_distance != blank and block.settings.heading_paralax_strength  %}:{{block.settings.heading_paralax_distance}}:{{block.settings.heading_paralax_strength}}{% endif %}
+                    lax
+                    ultimate-component-animate-{{block.settings.paralax_driver | escape }}
+                    lax_preset_{{block.settings.heading_paralax_preset | escape }}{% if block.settings.heading_paralax_distance != blank and block.settings.heading_paralax_strength  %}:{{block.settings.heading_paralax_distance | escape }}:{{block.settings.heading_paralax_strength | escape }}{% endif %}
                   {% endif %}
-                " style="color:{{ block.settings.maintitlecolor }}">{{ block.settings.maintitle }}</div>
+                " style="color:{{ block.settings.maintitlecolor | escape }}">{{ block.settings.maintitle }}</div>
                 {% else %}
                 <div class="
                   ultimate-component-main-title
-                  
+
                   {% if block.settings.maintitle_css_classes != blank %}
-                    {{ block.settings.maintitle_css_classes }}
+                    {{ block.settings.maintitle_css_classes | escape }}
                   {% endif %}
                   {% if block.settings.heading_use_animation and block.settings.heading_animation != blank  %}
                     animate__animated
-                    animate__{{ block.settings.heading_animation }}
+                    animate__{{ block.settings.heading_animation | escape }}
                     {% if block.settings.heading_animation_delay != blank %}
-                      animate__delay-{{block.settings.heading_animation_delay}}
+                      animate__delay-{{block.settings.heading_animation_delay | escape }}
                     {% endif %}
                     {% if block.settings.heading_animation_speed != blank %}
-                      animate__{{block.settings.heading_animation_speed}}
+                      animate__{{block.settings.heading_animation_speed | escape }}
                     {% endif %}
                     {% if block.settings.heading_animation_repeat != blank %}
-                      animate__{{block.settings.heading_animation_repeat}}
+                      animate__{{block.settings.heading_animation_repeat | escape }}
                     {% endif %}
                   {% endif %}
 
                   {% if block.settings.paralax_driver != blank and block.settings.heading_paralax_preset != blank %}
-                    lax  
-                    ultimate-component-animate-{{block.settings.paralax_driver}}
-                    lax_preset_{{block.settings.heading_paralax_preset}}{% if block.settings.heading_paralax_distance != blank and block.settings.heading_paralax_strength  %}:{{block.settings.heading_paralax_distance}}:{{block.settings.heading_paralax_strength}}{% endif %}
+                    lax
+                    ultimate-component-animate-{{block.settings.paralax_driver | escape }}
+                    lax_preset_{{block.settings.heading_paralax_preset | escape }}{% if block.settings.heading_paralax_distance != blank and block.settings.heading_paralax_strength  %}:{{block.settings.heading_paralax_distance | escape }}:{{block.settings.heading_paralax_strength | escape }}{% endif %}
                   {% endif %}
-                " style="color:{{ block.settings.maintitlecolor }}">{{ block.settings.maintitle_html }}</div>
+                " style="color:{{ block.settings.maintitlecolor | escape }}">{{ block.settings.maintitle_html }}</div>
                 {% endif %}
                 {% if block.settings.desc != blank %}
                 <div class="
                   ultimate-component-desc
                 
                   {% if block.settings.desc_css_classes != blank %}
-                    {{ block.settings.desc_css_classes }}
+                    {{ block.settings.desc_css_classes | escape }}
                   {% endif %}
                   {% if block.settings.description_use_animation and block.settings.description_animation != blank  %}
                     animate__animated
-                    animate__{{ block.settings.description_animation }}
+                    animate__{{ block.settings.description_animation | escape }}
                     {% if block.settings.description_animation_delay != blank %}
-                      animate__delay-{{block.settings.description_animation_delay}}
+                      animate__delay-{{block.settings.description_animation_delay | escape }}
                     {% endif %}
                     {% if block.settings.description_animation_speed != blank %}
-                      animate__{{block.settings.description_animation_speed}}
+                      animate__{{block.settings.description_animation_speed | escape }}
                     {% endif %}
                     {% if block.settings.description_animation_repeat != blank %}
-                      animate__{{block.settings.description_animation_repeat}}
+                      animate__{{block.settings.description_animation_repeat | escape }}
                     {% endif %}
                   {% endif %}
 
                   {% if block.settings.paralax_driver != blank and block.settings.description_paralax_preset != blank %}
-                    lax  
-                    ultimate-component-animate-{{block.settings.paralax_driver}}
-                    lax_preset_{{block.settings.description_paralax_preset}}{% if block.settings.description_paralax_distance != blank and block.settings.description_paralax_strength  %}:{{block.settings.description_paralax_distance}}:{{block.settings.description_paralax_strength}}{% endif %}
+                    lax
+                    ultimate-component-animate-{{block.settings.paralax_driver | escape }}
+                    lax_preset_{{block.settings.description_paralax_preset | escape }}{% if block.settings.description_paralax_distance != blank and block.settings.description_paralax_strength  %}:{{block.settings.description_paralax_distance | escape }}:{{block.settings.description_paralax_strength | escape }}{% endif %}
                   {% endif %}
-                " style="color:{{ block.settings.desccolor }}">{{ block.settings.desc }}</div>
+                " style="color:{{ block.settings.desccolor | escape }}">{{ block.settings.desc }}</div>
                 {% else %}
                 <div class="
                   ultimate-component-desc
-                
+
                   {% if block.settings.desc_css_classes != blank %}
-                    {{ block.settings.desc_css_classes }}
+                    {{ block.settings.desc_css_classes | escape }}
                   {% endif %}
                   {% if block.settings.description_use_animation and block.settings.description_animation != blank  %}
                     animate__animated
-                    animate__{{ block.settings.description_animation }}
+                    animate__{{ block.settings.description_animation | escape }}
                     {% if block.settings.description_animation_delay != blank %}
-                      animate__delay-{{block.settings.description_animation_delay}}
+                      animate__delay-{{block.settings.description_animation_delay | escape }}
                     {% endif %}
                     {% if block.settings.description_animation_speed != blank %}
-                      animate__{{block.settings.description_animation_speed}}
+                      animate__{{block.settings.description_animation_speed | escape }}
                     {% endif %}
                     {% if block.settings.description_animation_repeat != blank %}
-                      animate__{{block.settings.description_animation_repeat}}
+                      animate__{{block.settings.description_animation_repeat | escape }}
                     {% endif %}
                   {% endif %}
 
                   {% if block.settings.paralax_driver != blank and block.settings.description_paralax_preset != blank %}
-                    lax  
-                    ultimate-component-animate-{{block.settings.paralax_driver}}
-                    lax_preset_{{block.settings.description_paralax_preset}}{% if block.settings.description_paralax_distance != blank and block.settings.description_paralax_strength  %}:{{block.settings.description_paralax_distance}}:{{block.settings.description_paralax_strength}}{% endif %}
+                    lax
+                    ultimate-component-animate-{{block.settings.paralax_driver | escape }}
+                    lax_preset_{{block.settings.description_paralax_preset | escape }}{% if block.settings.description_paralax_distance != blank and block.settings.description_paralax_strength  %}:{{block.settings.description_paralax_distance | escape }}:{{block.settings.description_paralax_strength | escape }}{% endif %}
                   {% endif %}
-                " style="color:{{ block.settings.desccolor }}">{{ block.settings.desc_html }}</div>
+                " style="color:{{ block.settings.desccolor | escape }}">{{ block.settings.desc_html }}</div>
                 {% endif %}
                 {% if block.settings.button_label != blank %}
                 <div class="
@@ -256,22 +256,22 @@
                     
                   {% if block.settings.button_use_animation and block.settings.button_animation != blank  %}
                     animate__animated
-                    animate__{{ block.settings.button_animation }}
+                    animate__{{ block.settings.button_animation | escape }}
                     {% if block.settings.button_animation_delay != blank %}
-                      animate__delay-{{block.settings.button_animation_delay}}
+                      animate__delay-{{block.settings.button_animation_delay | escape }}
                     {% endif %}
                     {% if block.settings.button_animation_speed != blank %}
-                      animate__{{block.settings.button_animation_speed}}
+                      animate__{{block.settings.button_animation_speed | escape }}
                     {% endif %}
                     {% if block.settings.button_animation_repeat != blank %}
-                      animate__{{block.settings.button_animation_repeat}}
+                      animate__{{block.settings.button_animation_repeat | escape }}
                     {% endif %}
                   {% endif %}
 
                   {% if block.settings.paralax_driver != blank and block.settings.button_paralax_preset != blank %}
-                    lax  
-                    ultimate-component-animate-{{block.settings.paralax_driver}}
-                    lax_preset_{{block.settings.button_paralax_preset}}{% if block.settings.button_paralax_distance != blank and block.settings.button_paralax_strength  %}:{{block.settings.button_paralax_distance}}:{{block.settings.button_paralax_strength}}{% endif %}
+                    lax
+                    ultimate-component-animate-{{block.settings.paralax_driver | escape }}
+                    lax_preset_{{block.settings.button_paralax_preset | escape }}{% if block.settings.button_paralax_distance != blank and block.settings.button_paralax_strength  %}:{{block.settings.button_paralax_distance | escape }}:{{block.settings.button_paralax_strength | escape }}{% endif %}
                   {% endif %}
                 ">{{ block.settings.button_label | escape }}</div>
                 {% endif %}
@@ -281,7 +281,7 @@
           </div>
         </a> 
         {% if block.settings.bottom_edge_image != blank %}
-        <div style="bottom:0;z-index:5;height: {{ block.settings.bottom_edge_height | default: '10vh' }} !important;" class="ultimate-component-edges-container">
+        <div style="bottom:0;z-index:5;height: {{ block.settings.bottom_edge_height | default: '10vh' | escape }} !important;" class="ultimate-component-edges-container">
           <img class="ultimate-component-cover lazyload" {% if section.settings.lazyload %}data-{% endif %}src=" {{ block.settings.bottom_edge_image | img_url: 'master' }}" alt="Ultimate Component Bottom Edge" />
         </div> 
         {%endif %} 
@@ -293,8 +293,8 @@
 </div>
 <style type="text/css">
   :root {
-    --height{{ section.id}} : {{ section.settings.height}} ;
-    --mobileheight{{ section.id}} : {{ section.settings.mobile_height}};
+    --height{{ section.id}} : {{ section.settings.height | escape }} ;
+    --mobileheight{{ section.id}} : {{ section.settings.mobile_height | escape }};
   }
   
   #shopify-section-{{ section.id}} .same-height {
@@ -319,7 +319,7 @@
   }
   
   #shopify-section-{{section.id}} {
-    margin-bottom:{{ section.settings.section_bottom_spacing_desktop | default: 0}}px;
+    margin-bottom:{{ section.settings.section_bottom_spacing_desktop | default: 0 | escape }}px;
   }
   
   #shopify-section-{{ section.id}} .ultimate-component-content-right {
@@ -413,14 +413,14 @@
   
   #shopify-section-{{section.id}} {
     position: relative;
-    z-index:{{ section.settings.z_index | default: '0' }};
-    margin-top:{{ section.settings.top_edge_margin | default: '0' }};
-    margin-bottom:{{ section.settings.bottom_edge_margin | default: '0' }};
+    z-index:{{ section.settings.z_index | default: '0' | escape }};
+    margin-top:{{ section.settings.top_edge_margin | default: '0' | escape }};
+    margin-bottom:{{ section.settings.bottom_edge_margin | default: '0' | escape }};
   }
   
   #shopify-section-{{section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-link {
     display: flex;
-    align-items: {{ section.settings.content_items_alignment | default: 'center'}};
+    align-items: {{ section.settings.content_items_alignment | default: 'center' | escape }};
     height: var(--height{{ section.id}} ) !important;
   }
   
@@ -574,11 +574,11 @@
     
     
   #shopify-section-{{section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-link {
-    align-items: {{ section.settings.content_items_mobile_alignment | default: 'center'}} !important;
+    align-items: {{ section.settings.content_items_mobile_alignment | default: 'center' | escape }} !important;
   }
     
     #shopify-section-{{ section.id}} {
-      margin-bottom: {{ section.settings.section_bottom_spacing_mobile | default: 0 }}px;
+      margin-bottom: {{ section.settings.section_bottom_spacing_mobile | default: 0 | escape }}px;
     }
     #shopify-section-{{ section.id}} .ultimate-component-container .ultimate-component-wrapper .ultimate-component-link {
       height: var(--mobileheight{{ section.id }}) !important;
@@ -597,7 +597,7 @@
 
     #shopify-section-{{ section.id}} .ultimate-component-background-image-mobile {
       display:block;
-      height: calc( ( -1 * {{ section.settings.mobile_top_edge_margin | default: '0px' }} ) + ( -1 * {{ section.settings.mobile_bottom_edge_margin | default: '0px' }} ) + {{ section.settings.mobile_height | default: '0px' }}) !important;
+      height: calc( ( -1 * {{ section.settings.mobile_top_edge_margin | default: '0px' | escape }} ) + ( -1 * {{ section.settings.mobile_bottom_edge_margin | default: '0px' | escape }} ) + {{ section.settings.mobile_height | default: '0px' | escape }}) !important;
     }
 
     #shopify-section-{{ section.id}} .ultimate-component-mobile-content-right {
@@ -643,8 +643,8 @@
     }    
   
     #shopify-section-{{section.id}} {
-      margin-top:{{ section.settings.mobile_top_edge_margin | default: '0' }};
-      margin-bottom:{{ section.settings.mobile_bottom_edge_margin | default: '0' }};
+      margin-top:{{ section.settings.mobile_top_edge_margin | default: '0' | escape }};
+      margin-bottom:{{ section.settings.mobile_bottom_edge_margin | default: '0' | escape }};
     }
   
   }
@@ -656,12 +656,12 @@
   }
 </style>
 <script>
-  window.onload = function() {
-    
+  window.addEventListener('load', function() {
+
     var list = document.getElementsByTagName('script');
     var i = list.length, laxflag = false, yallflag = false;
     while (i--) {
-        if (list[i].src === 'https://cdn.jsdelivr.net/npm/lax.js') {
+        if (list[i].src === 'https://cdn.jsdelivr.net/npm/lax.js@2.0.3/lib/lax.min.js') {
             laxflag = true;
         }
 
@@ -672,30 +672,32 @@
 
     // if we didn't already find it on the page, add it
     if (!laxflag) {
-        var tag = document.createElement('script');
-        tag.src = 'https://cdn.jsdelivr.net/npm/lax.js';
-        document.getElementsByTagName('body')[0].appendChild(tag);
-    
-        window.onload = function() {
-            lax.init()
+        var laxTag = document.createElement('script');
+        laxTag.src = 'https://cdn.jsdelivr.net/npm/lax.js@2.0.3/lib/lax.min.js';
+        laxTag.integrity = 'sha384-cnajc7dtL5+R2hIgCQTHuJHFlQ1dUx8aEGKGkh/Xa1Y3cgo0bow9xBuSfjr+A6a5';
+        laxTag.crossOrigin = 'anonymous';
+        laxTag.onload = function() {
+            lax.init();
             // Add a driver that we use to control our animations
             lax.addDriver('scrollY', function() {
-            return window.scrollY
+                return window.scrollY;
             });
         };
-    };
+        document.getElementsByTagName('body')[0].appendChild(laxTag);
+    }
 
     if (!yallflag) {
-        var tag = document.createElement('script');
-        tag.src = 'https://cdn.jsdelivr.net/npm/yall-js@3.2.0/dist/yall.min.js';
-        document.getElementsByTagName('body')[0].appendChild(tag);
-    
-        window.onload = function() {
-            document.addEventListener("DOMContentLoaded", yall);
+        var yallTag = document.createElement('script');
+        yallTag.src = 'https://cdn.jsdelivr.net/npm/yall-js@3.2.0/dist/yall.min.js';
+        yallTag.integrity = 'sha384-fsvLCat1Tpg+zf70D11lkJMP/yPcMSP1VmINBlBiK5ZwK4oZDtfDpzz9cO9+zMd+';
+        yallTag.crossOrigin = 'anonymous';
+        yallTag.onload = function() {
+            yall();
         };
-    };
+        document.getElementsByTagName('body')[0].appendChild(yallTag);
+    }
 
-  }
+  });
 </script> 
 
 {% schema %}
@@ -1585,9 +1587,9 @@
                     "default": "<p>It's a wonderful day!</p>"
                 },
                 {
-                    "type": "html",
+                    "type": "richtext",
                     "id": "subtitle_html",
-                    "label": "Subtitle(html)"
+                    "label": "Subtitle(richtext)"
                 },
                 {
                     "type": "color",
@@ -1608,9 +1610,9 @@
                     "default": "<p>Hello World</p>"
                 },
                 {
-                    "type": "html",
+                    "type": "richtext",
                     "id": "maintitle_html",
-                    "label": "Title(html)"
+                    "label": "Title(richtext)"
                 },
                 {
                     "type": "color",
@@ -1631,9 +1633,9 @@
                     "default": "<p>The sky outside is wonderful wouldn't you say?</p>"
                 },
                 {
-                    "type": "html",
+                    "type": "richtext",
                     "id": "desc_html",
-                    "label": "Description(html)"
+                    "label": "Description(richtext)"
                 },
                 {
                     "type": "color",
